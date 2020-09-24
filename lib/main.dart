@@ -8,7 +8,7 @@ void main() {
 }
 
 class ExtraColorsUtility {
-  
+  //okay
   static const Color customFirstColor = Colors.white;
   static const Color customSecondColor = Colors.black;
   static const Color customThirdColor = Colors.grey;
