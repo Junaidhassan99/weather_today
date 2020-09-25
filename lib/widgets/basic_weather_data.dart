@@ -34,14 +34,14 @@ class BasicWeatherData extends StatelessWidget {
               style: TextStyle(fontSize: 60),
             ),
             Text(
-              '*C',
-              style: TextStyle(fontSize: 10),
+              '°C',
+              style: TextStyle(fontSize: 18),
             ),
           ],
         ),
         Text(
-          'Fells like 3*',
-          style: TextStyle(fontSize: 14),
+          'Fells like 3°',
+          style: TextStyle(fontSize: 16),
         ),
       ],
     );

@@ -13,13 +13,13 @@ class LocationSelector extends StatelessWidget {
         Text(
           'Islamabad,',
           style: TextStyle(
-            fontSize: 18,
+            fontSize: 22,
             fontWeight: FontWeight.bold,
           ),
         ),
         Text(
           ' Pakistan',
-          style: TextStyle(fontSize: 18),
+          style: TextStyle(fontSize: 22),
         ),
         Icon(Icons.arrow_drop_down)
       ],

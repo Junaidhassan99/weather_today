@@ -7,6 +7,7 @@ import 'package:weather_today/widgets/basic_weather_data.dart';
 import 'package:weather_today/widgets/weekly_weather_buttons.dart';
 
 class HomeScreen extends StatelessWidget {
+  static const routeName = '/home-screen';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +25,7 @@ class HomeScreen extends StatelessWidget {
               children: [
                 Container(
                   width: double.infinity,
-                  padding: EdgeInsets.only(top: 5, left: 5, right: 5),
+                  padding: EdgeInsets.only(top: 20, left: 20, right: 20),
                   child: Column(
                     children: [
                       BasicWeatherData(),
@@ -33,10 +34,11 @@ class HomeScreen extends StatelessWidget {
                       ),
                       WeeklyWeatherButtons(),
                       Divider(),
-                      HourlyWeatherList(),
+                     
                     ],
                   ),
                 ),
+                 HourlyWeatherList(),
                 CurrentWeatherConditionsDescription(),
               ],
             ),

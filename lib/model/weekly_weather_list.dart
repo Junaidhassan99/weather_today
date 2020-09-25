@@ -8,7 +8,7 @@ class WeeklyWeather {
   WeeklyWeather({this.date, this.icon, this.maxTemp, this.minTemp});
 }
 
-class WeeklyWeatherList {
+class WeeklyWeatherList with ChangeNotifier{
   List<WeeklyWeather> weeklyWeatherListData = [
     WeeklyWeather(
       date: DateTime.now(),
@@ -38,6 +38,36 @@ class WeeklyWeatherList {
       date: DateTime.now(),
       icon: Icons.ac_unit,
       maxTemp: -2,
+      minTemp: -9,
+    ),
+    WeeklyWeather(
+      date: DateTime.now(),
+      icon: Icons.ac_unit,
+      maxTemp: -2,
+      minTemp: -9,
+    ),
+    WeeklyWeather(
+      date: DateTime.now(),
+      icon: Icons.ac_unit,
+      maxTemp: -2,
+      minTemp: -9,
+    ),
+    WeeklyWeather(
+      date: DateTime.now(),
+      icon: Icons.ac_unit,
+      maxTemp: -2,
+      minTemp: -9,
+    ),
+    WeeklyWeather(
+      date: DateTime.now(),
+      icon: Icons.ac_unit,
+      maxTemp: -2,
+      minTemp: -9,
+    ),
+     WeeklyWeather(
+      date: DateTime.now(),
+      icon: Icons.ac_unit,
+      maxTemp: -555,
       minTemp: -9,
     ),
   ];

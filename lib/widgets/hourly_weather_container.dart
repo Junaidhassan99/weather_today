@@ -31,7 +31,7 @@ class HourlyWeatherContainer extends StatelessWidget {
                     color: Colors.black,
                   ),
                   Text(
-                    '-1*c',
+                    '-1°C',
                     style: TextStyle(color: ExtraColorsUtility.customSecondColor),
                   ),
                 ],
