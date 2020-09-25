@@ -1,7 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_today/model/weekly_weather_list.dart';
+import 'package:weather_today/widgets/forcast_weather_tile.dart';
 
 import '../main.dart';
 
@@ -13,44 +15,21 @@ class NextFiveDaysWeatherTiles extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final weeklyWeatherListData =
-        Provider.of<WeeklyWeatherList>(context)
-            .getWeeklyWeatherListData;
+        Provider.of<WeeklyWeatherList>(context).getWeeklyWeatherListData;
     return ListView.builder(
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemCount: weeklyWeatherListData.length,
       itemBuilder: (_, index) => Column(
         children: [
-          Row(
-            children: [
-              Icon(weeklyWeatherListData[index].icon),
-              SizedBox(
-                width: 10,
-              ),
-              Text(
-                DateFormat('EEEEE, d MMM ').format(
-                  weeklyWeatherListData[index].date,
-                ),
-                style: TextStyle(fontSize: 20),
-              ),
-              Expanded(
-                child: Container(),
-              ),
-              Text(
-                weeklyWeatherListData[index].maxTemp.toString(),
-                style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              Text(
-                weeklyWeatherListData[index].minTemp.toString(),
-                style: TextStyle(fontSize: 25),
-              ),
-            ],
+          ForcastWeatherTile(
+            fontSizeData: 24,
+            weeklyWeatherData: WeeklyWeather(
+              date: weeklyWeatherListData[index].date,
+              icon: weeklyWeatherListData[index].icon,
+              maxTemp: weeklyWeatherListData[index].maxTemp,
+              minTemp: weeklyWeatherListData[index].minTemp,
+            ),
           ),
           Divider(
             color: ExtraColorsUtility.customThirdColor,

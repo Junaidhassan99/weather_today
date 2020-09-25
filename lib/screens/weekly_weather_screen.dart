@@ -5,10 +5,11 @@ import 'package:weather_today/model/weekly_weather_list.dart';
 import 'package:weather_today/widgets/current_weather_conditions_description_weekly_weather_screen.dart';
 import 'package:weather_today/widgets/location_selector.dart';
 import 'package:weather_today/widgets/next_five_days_weather_tile.dart';
-import 'package:weather_today/widgets/tomorow_weather_tile.dart';
+import 'package:weather_today/widgets/today_weather_tile.dart';
 
 class WeeklyWeatherScreen extends StatelessWidget {
   static const routeName = '/weekly-weather-screen';
+  static const double defaultPadding = 20;
   //hello
   //changes
   @override
@@ -20,9 +21,12 @@ class WeeklyWeatherScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Container(
           //width: double.infinity,
-          padding: EdgeInsets.only(top: 20, left: 20, right: 20),
+          padding: EdgeInsets.only(
+            top: defaultPadding,
+            left: defaultPadding,
+            right: defaultPadding,
+          ),
           child: Column(
-            
             children: [
               LocationSelector(),
               SizedBox(
@@ -38,7 +42,7 @@ class WeeklyWeatherScreen extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              TomorowWeatherTile(),
+              TodayWeatherTile(),
               SizedBox(
                 height: 20,
               ),
