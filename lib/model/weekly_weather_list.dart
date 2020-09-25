@@ -22,6 +22,24 @@ class WeeklyWeatherList {
       maxTemp: -2,
       minTemp: -9,
     ),
+    WeeklyWeather(
+      date: DateTime.now(),
+      icon: Icons.cloud,
+      maxTemp: -2,
+      minTemp: -9,
+    ),
+    WeeklyWeather(
+      date: DateTime.now(),
+      icon: Icons.wb_sunny,
+      maxTemp: -2,
+      minTemp: -9,
+    ),
+    WeeklyWeather(
+      date: DateTime.now(),
+      icon: Icons.ac_unit,
+      maxTemp: -2,
+      minTemp: -9,
+    ),
   ];
   List<WeeklyWeather> get getWeeklyWeatherListData {
     return weeklyWeatherListData;

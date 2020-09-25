@@ -26,7 +26,10 @@ class WeeklyWeatherButtons extends StatelessWidget {
         ),
         Text(
           'Next 5 days',
-          style: TextStyle(fontSize: 18),
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ],
     );

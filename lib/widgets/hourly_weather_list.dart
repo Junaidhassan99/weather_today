@@ -10,11 +10,20 @@ class HourlyWeatherList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 100,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children: [
-          for (int i = 0; i < 12; i++) HourlyWeatherContainer(),
-        ],
+      child: LayoutBuilder(
+        builder: (context, constraints) => SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: ConstrainedBox(
+            constraints: BoxConstraints(minWidth: constraints.maxWidth),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                for (int i = 0; i < 12; i++) HourlyWeatherContainer(),
+                //for (int i = 0; i < 12; i++) HourlyWeatherContainer(),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

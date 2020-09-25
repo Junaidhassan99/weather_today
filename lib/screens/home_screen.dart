@@ -13,26 +13,35 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Weather Today'),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            width: double.infinity,
-            padding: EdgeInsets.only(top: 5, left: 5, right: 5),
+      body: LayoutBuilder(
+        builder: (context, constraints) => SingleChildScrollView(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(minHeight: constraints.maxHeight),
             child: Column(
+              //mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                BasicWeatherData(),
-                SizedBox(
-                  height: 10,
+                Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.only(top: 5, left: 5, right: 5),
+                  child: Column(
+                    children: [
+                      BasicWeatherData(),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      WeeklyWeatherButtons(),
+                      Divider(),
+                      HourlyWeatherList(),
+                    ],
+                  ),
                 ),
-                WeeklyWeatherButtons(),
-                Divider(),
-                HourlyWeatherList(),
+                CurrentWeatherConditionsDescription(),
               ],
             ),
           ),
-          CurrentWeatherConditionsDescription(),
-        ],
+        ),
       ),
     );
   }
