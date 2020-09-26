@@ -5,73 +5,78 @@ class WeeklyWeather {
   DateTime date;
   int minTemp;
   int maxTemp;
-  WeeklyWeather({this.date, this.icon, this.maxTemp, this.minTemp});
+  WeeklyWeather({
+    @required this.date,
+     @required this.icon,
+     @required this.maxTemp,
+     @required this.minTemp,
+  });
 }
 
-class WeeklyWeatherList with ChangeNotifier{
-  List<WeeklyWeather> weeklyWeatherListData = [
-    WeeklyWeather(
-      date: DateTime.now(),
-      icon: Icons.ac_unit,
-      maxTemp: -2,
-      minTemp: -9,
-    ),
-    WeeklyWeather(
-      date: DateTime.now(),
-      icon: Icons.ac_unit,
-      maxTemp: -2,
-      minTemp: -9,
-    ),
-    WeeklyWeather(
-      date: DateTime.now(),
-      icon: Icons.cloud,
-      maxTemp: -2,
-      minTemp: -9,
-    ),
-    WeeklyWeather(
-      date: DateTime.now(),
-      icon: Icons.wb_sunny,
-      maxTemp: -2,
-      minTemp: -9,
-    ),
-    WeeklyWeather(
-      date: DateTime.now(),
-      icon: Icons.ac_unit,
-      maxTemp: -2,
-      minTemp: -9,
-    ),
-    WeeklyWeather(
-      date: DateTime.now(),
-      icon: Icons.ac_unit,
-      maxTemp: -2,
-      minTemp: -9,
-    ),
-    WeeklyWeather(
-      date: DateTime.now(),
-      icon: Icons.ac_unit,
-      maxTemp: -2,
-      minTemp: -9,
-    ),
-    WeeklyWeather(
-      date: DateTime.now(),
-      icon: Icons.ac_unit,
-      maxTemp: -2,
-      minTemp: -9,
-    ),
-    WeeklyWeather(
-      date: DateTime.now(),
-      icon: Icons.ac_unit,
-      maxTemp: -2,
-      minTemp: -9,
-    ),
-     WeeklyWeather(
-      date: DateTime.now(),
-      icon: Icons.ac_unit,
-      maxTemp: -555,
-      minTemp: -9,
-    ),
+class WeeklyWeatherList with ChangeNotifier {
+  List<WeeklyWeather> _weeklyWeatherListData = [
+    // WeeklyWeather(
+    //   date: DateTime.now(),
+    //   icon: Icons.ac_unit,
+    //   maxTemp: -2,
+    //   minTemp: -9,
+    // ),
+    // WeeklyWeather(
+    //   date: DateTime.now(),
+    //   icon: Icons.ac_unit,
+    //   maxTemp: -2,
+    //   minTemp: -9,
+    // ),
+    // WeeklyWeather(
+    //   date: DateTime.now(),
+    //   icon: Icons.cloud,
+    //   maxTemp: -2,
+    //   minTemp: -9,
+    // ),
+    // WeeklyWeather(
+    //   date: DateTime.now(),
+    //   icon: Icons.wb_sunny,
+    //   maxTemp: -2,
+    //   minTemp: -9,
+    // ),
+    // WeeklyWeather(
+    //   date: DateTime.now(),
+    //   icon: Icons.ac_unit,
+    //   maxTemp: -2,
+    //   minTemp: -9,
+    // ),
+    // WeeklyWeather(
+    //   date: DateTime.now(),
+    //   icon: Icons.ac_unit,
+    //   maxTemp: -2,
+    //   minTemp: -9,
+    // ),
+    // WeeklyWeather(
+    //   date: DateTime.now(),
+    //   icon: Icons.ac_unit,
+    //   maxTemp: -2,
+    //   minTemp: -9,
+    // ),
+    // WeeklyWeather(
+    //   date: DateTime.now(),
+    //   icon: Icons.ac_unit,
+    //   maxTemp: -2,
+    //   minTemp: -9,
+    // ),
+    // WeeklyWeather(
+    //   date: DateTime.now(),
+    //   icon: Icons.ac_unit,
+    //   maxTemp: -2,
+    //   minTemp: -9,
+    // ),
+    // WeeklyWeather(
+    //   date: DateTime.now(),
+    //   icon: Icons.ac_unit,
+    //   maxTemp: -555,
+    //   minTemp: -9,
+    // ),
   ];
   List<WeeklyWeather> get getWeeklyWeatherListData {
-    return weeklyWeatherListData;
+    return _weeklyWeatherListData;
   }
 }
