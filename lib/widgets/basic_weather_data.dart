@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
+
 import 'package:weather_today/model/current_condition.dart';
 import 'package:weather_today/widgets/location_selector.dart';
 

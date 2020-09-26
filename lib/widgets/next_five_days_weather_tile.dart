@@ -37,17 +37,6 @@ class NextFiveDaysWeatherTiles extends StatelessWidget {
         ],
       ),
     );
-    //   Column(
-    //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    //     children: [
-    //       ...WeeklyWeatherList()
-    //           .getWeeklyWeatherListData
-    //           .map(
-    //             (e) =>
-    //           )
-    //           .toList(), //okay
-    //     ],
-    //   ),
-    // );
+   
   }
 }
