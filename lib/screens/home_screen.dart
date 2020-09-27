@@ -18,7 +18,7 @@ class HomeScreen extends StatelessWidget {
         title: Text('Weather Today'),
       ),
       body: FutureBuilder(
-        future: Provider.of<CurrentCondition>(context).loadCurrentCondition(),
+        future: Provider.of<CurrentCondition>(context,listen: false).loadCurrentCondition(),
         builder: (_, snapshot) {
           return !(snapshot.connectionState == ConnectionState.done)
               ? Center(

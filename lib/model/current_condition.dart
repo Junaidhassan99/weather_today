@@ -36,7 +36,7 @@ class CurrentCondition with ChangeNotifier {
 
       data = json.decode(response.body);
       print(response.statusCode);
-      print(data.toString());
+      //print(data.toString());
     } catch (error) {
       print(error.toString());
     }

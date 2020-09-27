@@ -1,9 +1,7 @@
-import 'dart:convert';
+
 
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
-import 'package:provider/provider.dart';
-import 'package:weather_today/model/current_condition.dart';
+
 import 'package:weather_today/screens/weekly_weather_screen.dart';
 
 class WeeklyWeatherButtons extends StatelessWidget {

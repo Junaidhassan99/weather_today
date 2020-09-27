@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
 import 'package:weather_today/main.dart';
 import 'package:weather_today/model/current_condition.dart';
 import 'package:weather_today/widgets/current_weather_data_tile.dart';
