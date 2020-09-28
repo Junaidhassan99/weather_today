@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:weather_today/main.dart';
 
 class HourlyWeatherContainer extends StatelessWidget {
+  final String temp;
+  HourlyWeatherContainer({
+   @required this.temp,
+  });
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -22,8 +26,7 @@ class HourlyWeatherContainer extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
                 color: ExtraColorsUtility.customFirstColor,
               ),
-              padding: EdgeInsets.symmetric(vertical:10,horizontal: 5),
-              //color: ExtraColorsUtility.customFirstColor,
+              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
               child: Column(
                 children: [
                   Icon(
@@ -31,15 +34,19 @@ class HourlyWeatherContainer extends StatelessWidget {
                     color: Colors.black,
                   ),
                   Text(
-                    '-1°C',
-                    style: TextStyle(color: ExtraColorsUtility.customSecondColor),
+                    temp,
+                    //'-1°C',
+                    style:
+                        TextStyle(color: ExtraColorsUtility.customSecondColor),
                   ),
                 ],
               ),
             )
           ],
         ),
-        SizedBox(width: 5,)
+        SizedBox(
+          width: 5,
+        )
       ],
     );
   }

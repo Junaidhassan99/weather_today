@@ -17,8 +17,20 @@ class ForecastWeeklyWeather {
   });
 }
 
+class ForecastHourlyWeather {
+  IconData icon;
+  int temp;
+  DateTime time;
+  ForecastHourlyWeather({
+    @required this.icon,
+    @required this.temp,
+    @required this.time,
+  });
+}
+
 class ForecastWeatherList with ChangeNotifier {
   List<ForecastWeeklyWeather> _weeklyWeatherListData = [];
+  List<ForecastHourlyWeather> _hourlyWeatherListData = [];
 
   Future<List<ForecastWeeklyWeather>> loadAndSetWeeklyForcastData() async {
     final response = await get(ApiRefrences.forcastApi);
@@ -38,8 +50,31 @@ class ForecastWeatherList with ChangeNotifier {
           maxTemp: maxTemp,
           minTemp: minTemp);
     }).toList();
+    //loadAndSetHourlyForcastData();
 
     return _weeklyWeatherListData;
+  }
+
+  Future<List<ForecastHourlyWeather>> loadAndSetHourlyForcastData() async {
+    final response = await get(ApiRefrences.forcastApi);
+    final responseDecoded = json.decode(response.body) as Map<String, dynamic>;
+    final responseListData =
+        responseDecoded['forecast']['forecastday'][0]['hour'] as List<dynamic>;
+
+    print(responseListData.length);
+
+    _hourlyWeatherListData = responseListData.map((e) {
+      int temp = double.parse(e['temp_c'].toString()).round();
+      print('test 1: $temp');
+
+      return ForecastHourlyWeather(
+        icon: Icons.ac_unit,
+        temp: temp,
+        time: DateTime.now(),
+      );
+    }).toList();
+
+    return _hourlyWeatherListData;
   }
 
   List<ForecastWeeklyWeather> get getWeeklyWeatherListData {
