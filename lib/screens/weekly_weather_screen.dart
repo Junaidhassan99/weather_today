@@ -28,7 +28,7 @@ class _WeeklyWeatherScreenState extends State<WeeklyWeatherScreen> {
       ),
       body: FutureBuilder(
         future: Provider.of<ForecastWeatherList>(context, listen: false)
-            .loadAndSetForcastData(),
+            .loadAndSetWeeklyForcastData(),
         builder: (_, snapshot) {
           return !(snapshot.connectionState == ConnectionState.done)
               ? Center(

@@ -20,7 +20,7 @@ class ForecastWeather {
 class ForecastWeatherList with ChangeNotifier {
   List<ForecastWeather> _weeklyWeatherListData = [];
 
-  Future<List<ForecastWeather>> loadAndSetForcastData() async {
+  Future<List<ForecastWeather>> loadAndSetWeeklyForcastData() async {
     final response = await get(ApiRefrences.forcastApi);
     final responseDecoded = json.decode(response.body) as Map<String, dynamic>;
     final responseListData =
