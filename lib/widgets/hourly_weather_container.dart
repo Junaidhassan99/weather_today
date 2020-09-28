@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:weather_today/main.dart';
 
 class HourlyWeatherContainer extends StatelessWidget {
   final String temp;
+  final DateTime time;
+  final IconData icon;
   HourlyWeatherContainer({
-   @required this.temp,
+    @required this.temp,
+    @required this.icon,
+    @required this.time,
   });
   @override
   Widget build(BuildContext context) {
@@ -13,7 +18,9 @@ class HourlyWeatherContainer extends StatelessWidget {
         Column(
           children: [
             Text(
-              'Now',
+              DateFormat('HH:mm').format(time),
+              //'Now',
+
             ),
             SizedBox(
               height: 5,
@@ -30,7 +37,8 @@ class HourlyWeatherContainer extends StatelessWidget {
               child: Column(
                 children: [
                   Icon(
-                    Icons.ac_unit,
+                    icon,
+                    //Icons.ac_unit,
                     color: Colors.black,
                   ),
                   Text(

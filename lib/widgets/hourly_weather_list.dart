@@ -29,6 +29,8 @@ class HourlyWeatherList extends StatelessWidget {
                       for (int i = 0; i < 12; i++)
                         HourlyWeatherContainer(
                           temp: snapShotData[i].temp.toString(),
+                          icon: snapShotData[i].icon,
+                          time: snapShotData[i].time,
                         ),
                     ],
                   ),

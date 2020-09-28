@@ -65,12 +65,14 @@ class ForecastWeatherList with ChangeNotifier {
 
     _hourlyWeatherListData = responseListData.map((e) {
       int temp = double.parse(e['temp_c'].toString()).round();
+      DateTime time = DateTime.parse(e['time'].toString());
       print('test 1: $temp');
+      print('test 2: $time');
 
       return ForecastHourlyWeather(
         icon: Icons.ac_unit,
         temp: temp,
-        time: DateTime.now(),
+        time: time,
       );
     }).toList();
 
