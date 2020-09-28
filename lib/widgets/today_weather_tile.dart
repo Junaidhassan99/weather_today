@@ -12,7 +12,7 @@ class TodayWeatherTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ForcastWeatherTile(
       fontSizeData: 24,
-      weeklyWeatherData: ForecastWeather(
+      weeklyWeatherData: ForecastWeeklyWeather(
         date: DateTime.now(),
         icon: Icons.ac_unit,
         maxTemp: -9,

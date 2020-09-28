@@ -7,7 +7,7 @@ import 'package:weather_today/widgets/forcast_weather_tile.dart';
 import '../main.dart';
 
 class NextFiveDaysWeatherTiles extends StatelessWidget {
-  final List<ForecastWeather> listData;
+  final List<ForecastWeeklyWeather> listData;
   NextFiveDaysWeatherTiles({
     Key key,
     @required this.listData,
@@ -25,7 +25,7 @@ class NextFiveDaysWeatherTiles extends StatelessWidget {
         children: [
           ForcastWeatherTile(
             fontSizeData: 24,
-            weeklyWeatherData: ForecastWeather(
+            weeklyWeatherData: ForecastWeeklyWeather(
               date: listData[index].date,
               icon: listData[index].icon,
               maxTemp: listData[index].maxTemp,
