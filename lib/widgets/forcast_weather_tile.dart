@@ -1,10 +1,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:weather_today/model/weekly_weather_list.dart';
+import 'package:weather_today/model/forecast_weather_list.dart';
 
 class ForcastWeatherTile extends StatelessWidget {
-  final WeeklyWeather weeklyWeatherData;
+  final ForecastWeather weeklyWeatherData;
   final double fontSizeData;
   ForcastWeatherTile({
     Key key,

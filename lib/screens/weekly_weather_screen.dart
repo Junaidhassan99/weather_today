@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_today/main.dart';
 
-import 'package:weather_today/model/weekly_weather_list.dart';
+import 'package:weather_today/model/forecast_weather_list.dart';
 
 import 'package:weather_today/widgets/location_selector.dart';
 import 'package:weather_today/widgets/next_five_days_weather_tile.dart';
@@ -27,7 +27,7 @@ class _WeeklyWeatherScreenState extends State<WeeklyWeatherScreen> {
         title: Text('Weather Today'),
       ),
       body: FutureBuilder(
-        future: Provider.of<WeeklyWeatherList>(context, listen: false)
+        future: Provider.of<ForecastWeatherList>(context, listen: false)
             .loadAndSetForcastData(),
         builder: (_, snapshot) {
           return !(snapshot.connectionState == ConnectionState.done)

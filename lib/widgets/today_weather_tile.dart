@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weather_today/model/weekly_weather_list.dart';
+import 'package:weather_today/model/forecast_weather_list.dart';
 import 'package:weather_today/widgets/forcast_weather_tile.dart';
 
 
@@ -12,7 +12,7 @@ class TodayWeatherTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ForcastWeatherTile(
       fontSizeData: 24,
-      weeklyWeatherData: WeeklyWeather(
+      weeklyWeatherData: ForecastWeather(
         date: DateTime.now(),
         icon: Icons.ac_unit,
         maxTemp: -9,

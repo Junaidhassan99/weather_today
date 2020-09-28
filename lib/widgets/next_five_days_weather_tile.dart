@@ -1,13 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:weather_today/model/weekly_weather_list.dart';
+import 'package:weather_today/model/forecast_weather_list.dart';
 import 'package:weather_today/widgets/forcast_weather_tile.dart';
 
 import '../main.dart';
 
 class NextFiveDaysWeatherTiles extends StatelessWidget {
-  final List<WeeklyWeather> listData;
+  final List<ForecastWeather> listData;
   NextFiveDaysWeatherTiles({
     Key key,
     @required this.listData,
@@ -25,7 +25,7 @@ class NextFiveDaysWeatherTiles extends StatelessWidget {
         children: [
           ForcastWeatherTile(
             fontSizeData: 24,
-            weeklyWeatherData: WeeklyWeather(
+            weeklyWeatherData: ForecastWeather(
               date: listData[index].date,
               icon: listData[index].icon,
               maxTemp: listData[index].maxTemp,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_today/model/current_condition.dart';
-import 'package:weather_today/model/weekly_weather_list.dart';
+import 'package:weather_today/model/forecast_weather_list.dart';
 import 'package:weather_today/screens/home_screen.dart';
 
 import 'package:weather_today/screens/weekly_weather_screen.dart';
@@ -23,7 +23,7 @@ class WeatherToday extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => WeeklyWeatherList(),
+          create: (_) => ForecastWeatherList(),
         ),
         ChangeNotifierProvider(
           create: (_) => CurrentCondition(),

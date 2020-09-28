@@ -13,7 +13,7 @@ class CurrentCondition with ChangeNotifier {
   int precipitation; //%
   int humidity; //%
   double wind; //km/h
-  double pressure; //hpa
+  int pressure; //hpa
 
   CurrentCondition({
     this.date,
@@ -47,7 +47,7 @@ class CurrentCondition with ChangeNotifier {
     precipitation =
         double.parse(data['current']['precip_mm'].toString()).round();
 
-    pressure = double.parse(data['current']['pressure_mb'].toString());
+    pressure = double.parse(data['current']['pressure_mb'].toString()).round();
     temp = double.parse(data['current']['temp_c'].toString()).round();
     tempFeelsLike =
         double.parse(data['current']['feelslike_c'].toString()).round();
