@@ -8,8 +8,8 @@ class CurrentCondition with ChangeNotifier {
   DateTime date;
   int temp; //'C
   int tempFeelsLike; //'C
-  String sunShineAt; //am/pmR
-  String sunSetAt; //am/pm
+  int cloudCover; //%
+  String windDirection; //am/pm
   int precipitation; //%
   int humidity; //%
   double wind; //km/h
@@ -20,8 +20,8 @@ class CurrentCondition with ChangeNotifier {
     this.humidity,
     this.precipitation,
     this.pressure,
-    this.sunSetAt,
-    this.sunShineAt,
+    this.windDirection,
+    this.cloudCover,
     this.temp,
     this.tempFeelsLike,
     this.wind,
@@ -53,13 +53,16 @@ class CurrentCondition with ChangeNotifier {
         double.parse(data['current']['feelslike_c'].toString()).round();
     wind = double.parse(data['current']['wind_kph'].toString());
 
+    cloudCover = int.parse(data['current']['cloud'].toString());
+    windDirection = data['current']['wind_dir'].toString();
+
     return CurrentCondition(
       date: date,
       humidity: humidity,
       precipitation: precipitation,
       pressure: pressure,
-      sunSetAt: sunSetAt,
-      sunShineAt: sunShineAt,
+      windDirection: windDirection,
+      cloudCover: cloudCover,
       temp: temp,
       tempFeelsLike: tempFeelsLike,
       wind: wind,

@@ -26,6 +26,9 @@ class HourlyWeatherList extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
+                      SizedBox(
+                        width: 5,
+                      ),
                       for (int i = 0; i < 12; i++)
                         HourlyWeatherContainer(
                           temp: snapShotData[i].temp.toString(),

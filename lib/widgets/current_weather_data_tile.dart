@@ -5,15 +5,12 @@ class CurrentWeatherDataTile extends StatelessWidget {
   final String title;
   final String value;
   final String unit;
-  CurrentWeatherDataTile({
-    @required this.title,
-    @required this.unit,
-    @required this.value
-  });
+  CurrentWeatherDataTile(
+      {@required this.title, @required this.unit, @required this.value});
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      //crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           title,

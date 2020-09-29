@@ -64,12 +64,12 @@ class CurrentWeatherConditionsDescription extends StatelessWidget {
         //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           _buildCurrentConditionsDescriptionRow(
-              firstTitle: 'SUNRISE',
-              firstUnit: 'am',
-              firstValue: '7:38',
-              secondTile: 'SUNSET',
-              secondUnit: 'pm',
-              secondValue: '7:38'),
+              firstTitle: 'Cloud Cover',
+              firstUnit: '%',
+              firstValue: loadedData.cloudCover.toString(),
+              secondTile: 'PRESSURE',
+              secondUnit: 'hpa',
+              secondValue: loadedData.pressure.toString()),
           _buildCurrentConditionsDescriptionRow(
               firstTitle: 'PRECIPIATION',
               firstUnit: '%',
@@ -78,12 +78,13 @@ class CurrentWeatherConditionsDescription extends StatelessWidget {
               secondUnit: '%',
               secondValue: loadedData.humidity.toString()),
           _buildCurrentConditionsDescriptionRow(
-              firstTitle: 'WIND',
-              firstUnit: 'km/h',
-              firstValue: loadedData.wind.toString(),
-              secondTile: 'PRESSURE',
-              secondUnit: 'hpa',
-              secondValue: loadedData.pressure.toString()),
+            firstTitle: 'WIND',
+            firstUnit: 'km/h',
+            firstValue: loadedData.wind.toString(),
+            secondTile: 'Wind Direction',
+            secondUnit: '',
+            secondValue: loadedData.windDirection,
+          ),
         ],
       ),
     );
