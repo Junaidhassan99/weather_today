@@ -36,14 +36,15 @@ class HourlyWeatherContainer extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
               child: Column(
                 children: [
-                  Container(height: 35,child: Image.network('http:'+iconImageUrl)),
+                  Container(
+                      height: 35, child: Image.network('http:' + iconImageUrl)),
                   // Icon(
                   //   icon,
                   //   //Icons.ac_unit,
                   //   color: Colors.black,
                   // ),
                   Text(
-                    temp,
+                    '$temp°',
                     //'-1°C',
                     style:
                         TextStyle(color: ExtraColorsUtility.customSecondColor),

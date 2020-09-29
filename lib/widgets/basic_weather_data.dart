@@ -30,12 +30,14 @@ class BasicWeatherData extends StatelessWidget {
           style: TextStyle(fontSize: 14),
         ),
         SizedBox(
-          height: 10,
+          height: 5,
         ),
+         Image.network('http:'+loadedData.iconImageUrl),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           //crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+           
             Text(
               '${loadedData.temp}',
               //'-1',

@@ -31,7 +31,7 @@ class ForcastWeatherTile extends StatelessWidget {
           child: Container(),
         ),
         Text(
-          weeklyWeatherData.maxTemp.toString(),
+          '${weeklyWeatherData.maxTemp}°',
           style: TextStyle(
             fontSize: fontSizeData+5,
             fontWeight: FontWeight.bold,
@@ -41,7 +41,7 @@ class ForcastWeatherTile extends StatelessWidget {
           width: 10,
         ),
         Text(
-          weeklyWeatherData.minTemp.toString(),
+          '${weeklyWeatherData.minTemp}°',
           style: TextStyle(fontSize: fontSizeData),
         ),
       ],

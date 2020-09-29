@@ -14,6 +14,7 @@ class CurrentCondition with ChangeNotifier {
   int humidity; //%
   double wind; //km/h
   int pressure; //hpa
+  String iconImageUrl;
 
   CurrentCondition({
     this.date,
@@ -25,6 +26,7 @@ class CurrentCondition with ChangeNotifier {
     this.temp,
     this.tempFeelsLike,
     this.wind,
+    this.iconImageUrl,
   });
   dynamic data;
 
@@ -56,6 +58,8 @@ class CurrentCondition with ChangeNotifier {
     cloudCover = int.parse(data['current']['cloud'].toString());
     windDirection = data['current']['wind_dir'].toString();
 
+    iconImageUrl = data['current']['condition']['icon'].toString();
+
     return CurrentCondition(
       date: date,
       humidity: humidity,
@@ -66,6 +70,7 @@ class CurrentCondition with ChangeNotifier {
       temp: temp,
       tempFeelsLike: tempFeelsLike,
       wind: wind,
+      iconImageUrl: iconImageUrl,
     );
   }
 }
