@@ -5,14 +5,15 @@ import 'package:weather_today/main.dart';
 class HourlyWeatherContainer extends StatelessWidget {
   final String temp;
   final DateTime time;
-  final IconData icon;
+  final String iconImageUrl;
   HourlyWeatherContainer({
     @required this.temp,
-    @required this.icon,
+    @required this.iconImageUrl,
     @required this.time,
   });
   @override
   Widget build(BuildContext context) {
+    //print(iconImageUrl.replaceFirst('//', '/'));
     return Row(
       children: [
         Column(
@@ -20,7 +21,6 @@ class HourlyWeatherContainer extends StatelessWidget {
             Text(
               DateFormat('HH:mm').format(time),
               //'Now',
-
             ),
             SizedBox(
               height: 5,
@@ -36,11 +36,12 @@ class HourlyWeatherContainer extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
               child: Column(
                 children: [
-                  Icon(
-                    icon,
-                    //Icons.ac_unit,
-                    color: Colors.black,
-                  ),
+                  Container(height: 35,child: Image.network('http:'+iconImageUrl)),
+                  // Icon(
+                  //   icon,
+                  //   //Icons.ac_unit,
+                  //   color: Colors.black,
+                  // ),
                   Text(
                     temp,
                     //'-1°C',

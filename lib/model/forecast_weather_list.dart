@@ -5,24 +5,24 @@ import 'package:http/http.dart';
 import 'package:weather_today/model/api_refrences.dart';
 
 class ForecastWeeklyWeather {
-  IconData icon;
+  String iconImageUrl;
   DateTime date;
   int minTemp;
   int maxTemp;
   ForecastWeeklyWeather({
     @required this.date,
-    @required this.icon,
+    @required this.iconImageUrl,
     @required this.maxTemp,
     @required this.minTemp,
   });
 }
 
 class ForecastHourlyWeather {
-  IconData icon;
+  String iconImageUrl;
   int temp;
   DateTime time;
   ForecastHourlyWeather({
-    @required this.icon,
+    @required this.iconImageUrl,
     @required this.temp,
     @required this.time,
   });
@@ -38,17 +38,22 @@ class ForecastWeatherList with ChangeNotifier {
     final responseListData =
         responseDecoded['forecast']['forecastday'] as List<dynamic>;
 
-    print(responseListData.length);
+    //print(responseListData.length);
 
     _weeklyWeatherListData = responseListData.map((e) {
       int maxTemp = double.parse(e['day']['maxtemp_c'].toString()).round();
       int minTemp = double.parse(e['day']['mintemp_c'].toString()).round();
+      String iconImageUrl =
+          e['day']['condition']['icon'].toString();
+      print(iconImageUrl);
 
       return ForecastWeeklyWeather(
-          icon: Icons.ac_unit,
-          date: DateTime.parse(e['date'].toString()),
-          maxTemp: maxTemp,
-          minTemp: minTemp);
+         iconImageUrl: iconImageUrl,
+        //iconImageUrl: '//cdn.weatherapi.com/weather/64x64/day/116.png',
+        date: DateTime.parse(e['date'].toString()),
+        maxTemp: maxTemp,
+        minTemp: minTemp,
+      );
     }).toList();
     //loadAndSetHourlyForcastData();
 
@@ -64,17 +69,19 @@ class ForecastWeatherList with ChangeNotifier {
         responseDecoded['forecast']['forecastday'][1]['hour'] as List<dynamic>;
     final responseListData = responseListData0 + responseListData1;
 
-    print('length=' + responseListData.length.toString());
+    //print('length=' + responseListData.length.toString());
 
     final hourlyWeatherListData48Hours = responseListData.map((e) {
       int temp = double.parse(e['temp_c'].toString()).round();
       DateTime time = DateTime.parse(e['time'].toString());
+      String iconImageUrl = e['condition']['icon'];
+
       //print('test 1: $temp');
       //print('test 2: $time');
       //
 
       return ForecastHourlyWeather(
-        icon: Icons.ac_unit,
+        iconImageUrl: iconImageUrl,
         temp: temp,
         time: time,
       );
@@ -84,7 +91,7 @@ class ForecastWeatherList with ChangeNotifier {
       return element.time.isAfter(DateTime.now());
     }).toList();
 
-    print('length 2=' + _hourlyWeatherListData.length.toString());
+    //print('length 2=' + _hourlyWeatherListData.length.toString());
 
     return _hourlyWeatherListData;
   }

@@ -16,12 +16,13 @@ class ForcastWeatherTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(weeklyWeatherData.icon),
+        Image.network('http:'+weeklyWeatherData.iconImageUrl),
+        //Icon(weeklyWeatherData.icon),
         SizedBox(
           width: 10,
         ),
         Text(
-          DateFormat('EEEEE, d MMM ').format(
+          DateFormat('EE, dd MMM ').format(
             weeklyWeatherData.date,
           ),
           style: TextStyle(fontSize: fontSizeData),

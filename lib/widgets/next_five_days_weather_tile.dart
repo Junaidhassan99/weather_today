@@ -27,7 +27,7 @@ class NextFiveDaysWeatherTiles extends StatelessWidget {
             fontSizeData: 24,
             weeklyWeatherData: ForecastWeeklyWeather(
               date: listData[index].date,
-              icon: listData[index].icon,
+              iconImageUrl: listData[index].iconImageUrl,
               maxTemp: listData[index].maxTemp,
               minTemp: listData[index].minTemp,
             ),

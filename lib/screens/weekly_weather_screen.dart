@@ -1,7 +1,4 @@
-
-
 import 'package:flutter/material.dart';
-
 
 import 'package:provider/provider.dart';
 import 'package:weather_today/main.dart';
@@ -30,6 +27,7 @@ class _WeeklyWeatherScreenState extends State<WeeklyWeatherScreen> {
         future: Provider.of<ForecastWeatherList>(context, listen: false)
             .loadAndSetWeeklyForcastData(),
         builder: (_, snapshot) {
+          //print((snapshot.data as List<ForecastWeeklyWeather>)[0].date);
           return !(snapshot.connectionState == ConnectionState.done)
               ? Center(
                   child: CircularProgressIndicator(),
@@ -65,11 +63,15 @@ class _WeeklyWeatherScreenState extends State<WeeklyWeatherScreen> {
                         // Divider(
                         //   color: ExtraColorsUtility.customThirdColor,
                         // ),
+                        //
                         // CurrentWeatherConditionDescriptionWeeklyWeatherScreen(),
                         Divider(
                           color: ExtraColorsUtility.customThirdColor,
                         ),
-                        NextFiveDaysWeatherTiles(listData: snapshot.data,),
+                        NextFiveDaysWeatherTiles(
+                          listData:
+                              snapshot.data as List<ForecastWeeklyWeather>,
+                        ),
                       ],
                     ),
                   ),
