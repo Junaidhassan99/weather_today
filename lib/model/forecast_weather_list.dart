@@ -58,16 +58,20 @@ class ForecastWeatherList with ChangeNotifier {
   Future<List<ForecastHourlyWeather>> loadAndSetHourlyForcastData() async {
     final response = await get(ApiRefrences.forcastApi);
     final responseDecoded = json.decode(response.body) as Map<String, dynamic>;
-    final responseListData =
+    final responseListData0 =
         responseDecoded['forecast']['forecastday'][0]['hour'] as List<dynamic>;
+    final responseListData1 =
+        responseDecoded['forecast']['forecastday'][1]['hour'] as List<dynamic>;
+    final responseListData = responseListData0 + responseListData1;
 
-    print(responseListData.length);
+    print('length=' + responseListData.length.toString());
 
-    _hourlyWeatherListData = responseListData.map((e) {
+    final hourlyWeatherListData48Hours = responseListData.map((e) {
       int temp = double.parse(e['temp_c'].toString()).round();
       DateTime time = DateTime.parse(e['time'].toString());
-      print('test 1: $temp');
-      print('test 2: $time');
+      //print('test 1: $temp');
+      //print('test 2: $time');
+      //
 
       return ForecastHourlyWeather(
         icon: Icons.ac_unit,
@@ -75,6 +79,12 @@ class ForecastWeatherList with ChangeNotifier {
         time: time,
       );
     }).toList();
+
+    _hourlyWeatherListData = hourlyWeatherListData48Hours.where((element) {
+      return element.time.isAfter(DateTime.now());
+    }).toList();
+
+    print('length 2=' + _hourlyWeatherListData.length.toString());
 
     return _hourlyWeatherListData;
   }
