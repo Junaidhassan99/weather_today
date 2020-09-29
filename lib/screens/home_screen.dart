@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_today/model/current_condition.dart';
-import 'package:weather_today/model/forecast_weather_list.dart';
 
 import 'package:weather_today/widgets/current_weather_conditions_description.dart';
 
@@ -12,28 +11,56 @@ import 'package:weather_today/widgets/weekly_weather_buttons.dart';
 class HomeScreen extends StatelessWidget {
   static const routeName = '/home-screen';
   static const double defaultPadding = 20;
+  final GlobalKey _keyGlobal = GlobalKey();
+
+  double _bodyHeight(BuildContext context) {
+    final bodyHeightData = MediaQuery.of(context).size.height -
+        MediaQuery.of(context).padding.top -
+        MediaQuery.of(context).padding.bottom -
+        kToolbarHeight;
+    return bodyHeightData;
+  }
+
+  double _getSizes() {
+    final RenderBox renderBoxWidget =
+        _keyGlobal.currentContext.findRenderObject();
+    final sizeWidget = renderBoxWidget.size.height;
+    print("SIZE of Red: $sizeWidget");
+    //MediaQuery.of(context).size.height
+    return sizeWidget;
+  }
+
   @override
   Widget build(BuildContext context) {
-    //Provider.of<ForecastWeatherList>(context, listen: false).loadAndSetHourlyForcastData();
     return Scaffold(
       appBar: AppBar(
         title: Text('Weather Today'),
       ),
-      body: FutureBuilder(
-        future: Provider.of<CurrentCondition>(context, listen: false)
-            .loadCurrentCondition(),
-        builder: (_, snapshot) {
-          return !(snapshot.connectionState == ConnectionState.done)
-              ? Center(
-                  child: CircularProgressIndicator(),
-                )
-              : LayoutBuilder(
-                  builder: (context, constraints) => SingleChildScrollView(
-                    child: ConstrainedBox(
-                      constraints:
-                          BoxConstraints(minHeight: constraints.maxHeight),
+      body: RefreshIndicator(
+        onRefresh: () async {
+          //print(MediaQuery.of(context).size.height);
+          //_getSizes();
+          await Provider.of<CurrentCondition>(context,listen: false).refreshCurrentCondition();
+        },
+        child: SingleChildScrollView(
+          physics: AlwaysScrollableScrollPhysics(),
+          child: FutureBuilder(
+            key: _keyGlobal,
+            future: Provider.of<CurrentCondition>(context)
+                .loadCurrentCondition(),
+            builder: (_, snapshot) {
+              return !(snapshot.connectionState == ConnectionState.done)
+                  ? Container(
+                      height: _bodyHeight(context),
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    )
+                  : Container(
+                      height: MediaQuery.of(context).size.height < 700
+                          ? 700
+                          : _bodyHeight(context),
                       child: Column(
-                        //mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
@@ -63,10 +90,10 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                    ),
-                  ),
-                );
-        },
+                    );
+            },
+          ),
+        ),
       ),
     );
   }

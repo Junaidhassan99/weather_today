@@ -73,4 +73,9 @@ class CurrentCondition with ChangeNotifier {
       iconImageUrl: iconImageUrl,
     );
   }
+
+  Future<void> refreshCurrentCondition() async {
+    await loadCurrentCondition();
+    notifyListeners();
+  }
 }

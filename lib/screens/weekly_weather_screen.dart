@@ -17,66 +17,84 @@ class WeeklyWeatherScreen extends StatefulWidget {
 }
 
 class _WeeklyWeatherScreenState extends State<WeeklyWeatherScreen> {
+  double _bodyHeight(BuildContext context) {
+    final bodyHeightData = MediaQuery.of(context).size.height -
+        MediaQuery.of(context).padding.top -
+        MediaQuery.of(context).padding.bottom -
+        kToolbarHeight;
+    return bodyHeightData;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Weather Today'),
       ),
-      body: FutureBuilder(
-        future: Provider.of<ForecastWeatherList>(context, listen: false)
-            .loadAndSetWeeklyForcastData(),
-        builder: (_, snapshot) {
-          //print((snapshot.data as List<ForecastWeeklyWeather>)[0].date);
-          return !(snapshot.connectionState == ConnectionState.done)
-              ? Center(
-                  child: CircularProgressIndicator(),
-                )
-              : SingleChildScrollView(
-                  child: Container(
-                    //width: double.infinity,
-                    padding: EdgeInsets.only(
-                      top: WeeklyWeatherScreen.defaultPadding,
-                      left: WeeklyWeatherScreen.defaultPadding,
-                      right: WeeklyWeatherScreen.defaultPadding,
-                    ),
-                    child: Column(
-                      children: [
-                        LocationSelector(),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Container(
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            'Next 3 days',
-                            style: TextStyle(fontSize: 30),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        //TodayWeatherTile(),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        // Divider(
-                        //   color: ExtraColorsUtility.customThirdColor,
-                        // ),
-                        //
-                        // CurrentWeatherConditionDescriptionWeeklyWeatherScreen(),
-                        Divider(
-                          color: ExtraColorsUtility.customThirdColor,
-                        ),
-                        NextFiveDaysWeatherTiles(
-                          listData:
-                              snapshot.data as List<ForecastWeeklyWeather>,
-                        ),
-                      ],
-                    ),
-                  ),
-                );
+      body: RefreshIndicator(
+        onRefresh: () async {
+          await Provider.of<ForecastWeatherList>(context, listen: false)
+              .refreshForcastWeather();
         },
+        child: SingleChildScrollView(
+          physics: AlwaysScrollableScrollPhysics(),
+          child: FutureBuilder(
+            future: Provider.of<ForecastWeatherList>(context)
+                .loadAndSetWeeklyForcastData(),
+            builder: (_, snapshot) {
+              //print((snapshot.data as List<ForecastWeeklyWeather>)[0].date);
+              return !(snapshot.connectionState == ConnectionState.done)
+                  ? Container(
+                      height: _bodyHeight(context),
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    )
+                  : Container(
+                      //width: double.infinity,
+                      padding: EdgeInsets.only(
+                        top: WeeklyWeatherScreen.defaultPadding,
+                        left: WeeklyWeatherScreen.defaultPadding,
+                        right: WeeklyWeatherScreen.defaultPadding,
+                      ),
+                      child: Column(
+                        children: [
+                          LocationSelector(),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Container(
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              'Next 3 days',
+                              style: TextStyle(fontSize: 30),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          //TodayWeatherTile(),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          // Divider(
+                          //   color: ExtraColorsUtility.customThirdColor,
+                          // ),
+                          //
+                          // CurrentWeatherConditionDescriptionWeeklyWeatherScreen(),
+                          Divider(
+                            color: ExtraColorsUtility.customThirdColor,
+                          ),
+                          NextFiveDaysWeatherTiles(
+                            listData:
+                                snapshot.data as List<ForecastWeeklyWeather>,
+                          ),
+                        ],
+                      ),
+                    );
+            },
+          ),
+        ),
       ),
     );
   }

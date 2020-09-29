@@ -43,12 +43,11 @@ class ForecastWeatherList with ChangeNotifier {
     _weeklyWeatherListData = responseListData.map((e) {
       int maxTemp = double.parse(e['day']['maxtemp_c'].toString()).round();
       int minTemp = double.parse(e['day']['mintemp_c'].toString()).round();
-      String iconImageUrl =
-          e['day']['condition']['icon'].toString();
+      String iconImageUrl = e['day']['condition']['icon'].toString();
       print(iconImageUrl);
 
       return ForecastWeeklyWeather(
-         iconImageUrl: iconImageUrl,
+        iconImageUrl: iconImageUrl,
         //iconImageUrl: '//cdn.weatherapi.com/weather/64x64/day/116.png',
         date: DateTime.parse(e['date'].toString()),
         maxTemp: maxTemp,
@@ -94,6 +93,12 @@ class ForecastWeatherList with ChangeNotifier {
     //print('length 2=' + _hourlyWeatherListData.length.toString());
 
     return _hourlyWeatherListData;
+  }
+
+  Future<void> refreshForcastWeather() async {
+    await loadAndSetWeeklyForcastData();
+    await loadAndSetHourlyForcastData();
+    notifyListeners();
   }
 
   List<ForecastWeeklyWeather> get getWeeklyWeatherListData {
