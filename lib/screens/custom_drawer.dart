@@ -20,7 +20,7 @@ class CustomDrawer extends StatelessWidget {
             title: Text(
               'Choose a city',
               style: Theme.of(context).textTheme.headline1,
-              //style: TextStyle(fontSize: 20),
+            
             ),
           ),
           Divider(

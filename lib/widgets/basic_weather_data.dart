@@ -16,7 +16,7 @@ class BasicWeatherData extends StatelessWidget {
     final dateData = DateFormat('EEE, d MMM ').format(loadedData.date);
     return Column(
       children: [
-        LocationSelector(),
+        LocationSelector(textSize: 22,),
         SizedBox(
           height: 10,
         ),

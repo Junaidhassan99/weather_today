@@ -12,7 +12,7 @@ import 'package:weather_today/widgets/weekly_weather_buttons.dart';
 class HomeScreen extends StatelessWidget {
   static const routeName = '/home-screen';
   static const double defaultPadding = 20;
-  final GlobalKey _keyGlobal = GlobalKey();
+  //final GlobalKey _keyGlobal = GlobalKey();
 
   double _bodyHeight(BuildContext context) {
     final bodyHeightData = MediaQuery.of(context).size.height -

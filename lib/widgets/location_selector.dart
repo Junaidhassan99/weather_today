@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class LocationSelector extends StatelessWidget {
+  final double textSize;
   const LocationSelector({
+    @required this.textSize,
     Key key,
   }) : super(key: key);
 
@@ -10,18 +12,22 @@ class LocationSelector extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        Icon(Icons.location_on),
+        SizedBox(
+          width: 5,
+        ),
         Text(
           'Islamabad,',
+          softWrap: true,
           style: TextStyle(
-            fontSize: 22,
+            fontSize: textSize,
             fontWeight: FontWeight.bold,
           ),
         ),
         Text(
           ' Pakistan',
-          style: TextStyle(fontSize: 22),
+          style: TextStyle(fontSize: textSize),
         ),
-        Icon(Icons.arrow_drop_down)
       ],
     );
   }

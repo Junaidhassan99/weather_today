@@ -33,6 +33,7 @@ class WeatherToday extends StatelessWidget {
       child: MaterialApp(
         theme: ThemeData.dark().copyWith(
           textTheme: TextTheme(
+            //tiles style of custom drawer
             headline1: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w400,

@@ -59,7 +59,7 @@ class _WeeklyWeatherScreenState extends State<WeeklyWeatherScreen> {
                       ),
                       child: Column(
                         children: [
-                          LocationSelector(),
+                          LocationSelector(textSize: 22,),
                           SizedBox(
                             height: 20,
                           ),
