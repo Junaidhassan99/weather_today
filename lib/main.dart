@@ -28,11 +28,16 @@ class WeatherToday extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => CurrentCondition(),
         ),
-        
       ],
       child: MaterialApp(
         theme: ThemeData.dark().copyWith(
-          // primaryColor: Colors.white,
+          textTheme: TextTheme(
+            headline1: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w400,
+              fontSize: 20,
+            ),
+          ),
           accentColor: Colors.red,
         ),
         home:

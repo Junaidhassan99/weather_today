@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:weather_today/model/current_condition.dart';
 
 import 'package:weather_today/widgets/current_weather_conditions_description.dart';
+import 'package:weather_today/screens/custom_drawer.dart';
 
 import 'package:weather_today/widgets/hourly_weather_list.dart';
 import 'package:weather_today/widgets/basic_weather_data.dart';
@@ -25,6 +26,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: CustomDrawer(),
       appBar: AppBar(
         title: Text('Weather Today'),
       ),
@@ -37,7 +39,7 @@ class HomeScreen extends StatelessWidget {
         child: SingleChildScrollView(
           physics: AlwaysScrollableScrollPhysics(),
           child: FutureBuilder(
-            key: _keyGlobal,
+            //key: _keyGlobal,
             future: Provider.of<CurrentCondition>(context)
                 .loadCurrentCondition(),
             builder: (_, snapshot) {
