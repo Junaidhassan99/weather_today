@@ -7,8 +7,9 @@ class CustomDrawerHeader extends StatelessWidget {
     Key key,
   }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
+  Widget _buildHeaderWidget(
+    CurrentCondition data,
+  ) {
     return Container(
       padding: EdgeInsets.all(10),
       child: Row(
@@ -26,43 +27,53 @@ class CustomDrawerHeader extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
-              FutureBuilder(
-                future: Provider.of<CurrentCondition>(context)
-                    .loadCurrentCondition(),
-                builder: (_, snapshot) {
-                  return !(snapshot.connectionState == ConnectionState.done)
-                      ? Container(
-                          child: Text(
-                            '-',
-                            style: TextStyle(fontSize: 60),
-                          ),
-                        )
-                      : Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              '${(snapshot.data as CurrentCondition).temp}',
-                              //'-1',
-                              style: TextStyle(fontSize: 60),
-                            ),
-                            Text(
-                              '°C',
-                              style: TextStyle(fontSize: 18),
-                            ),
-                          ],
-                        );
-                },
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    data == null ? '-' : '${data.temp}',
+                    //'-1',
+                    style: TextStyle(fontSize: 60),
+                  ),
+                  Text(
+                    data == null ? '' : '°C',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                ],
               )
             ],
           ),
           Expanded(
-            child: Image.network(
-              'http:' + '//cdn.weatherapi.com/weather/64x64/day/116.png',
-              fit: BoxFit.cover,
-            ),
+            child: data == null
+                ? FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Center(
+                      child: CircularProgressIndicator(
+                        //backgroundColor: Colors.white,
+                      ),
+                    ),
+                  )
+                : Image.network(
+                    'http:' + data.iconImageUrl,
+                    fit: BoxFit.cover,
+                  ),
           ),
         ],
       ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: Provider.of<CurrentCondition>(context).loadCurrentCondition(),
+      builder: (_, snapshot) {
+        return (snapshot.connectionState == ConnectionState.done)
+            ? _buildHeaderWidget(
+                (snapshot.data as CurrentCondition),
+              )
+            : _buildHeaderWidget(null);
+      },
     );
   }
 }
