@@ -21,14 +21,6 @@ class HomeScreen extends StatelessWidget {
     return bodyHeightData;
   }
 
-  double _getSizes() {
-    final RenderBox renderBoxWidget =
-        _keyGlobal.currentContext.findRenderObject();
-    final sizeWidget = renderBoxWidget.size.height;
-    print("SIZE of Red: $sizeWidget");
-    //MediaQuery.of(context).size.height
-    return sizeWidget;
-  }
 
   @override
   Widget build(BuildContext context) {
