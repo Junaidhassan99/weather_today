@@ -43,6 +43,9 @@ class HomeScreen extends StatelessWidget {
             future: Provider.of<CurrentCondition>(context)
                 .loadCurrentCondition(),
             builder: (_, snapshot) {
+              // if(snapshot.connectionState == ConnectionState.done){
+              //   print((snapshot.data as CurrentCondition));
+              // }
               return !(snapshot.connectionState == ConnectionState.done)
                   ? Container(
                       height: _bodyHeight(context),

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:intl/intl.dart';
 import 'package:weather_today/model/api_refrences.dart';
 
 class CurrentCondition with ChangeNotifier {
@@ -30,6 +31,13 @@ class CurrentCondition with ChangeNotifier {
   });
   dynamic data;
 
+  String _correctTheTimePattern(String string) {
+    if (string.trim().length == 15) {
+      string = string.replaceFirst(' ', ' 0');
+    }
+    return string;
+  }
+
   Future<CurrentCondition> loadCurrentCondition() async {
     try {
       final response = await get(
@@ -43,7 +51,13 @@ class CurrentCondition with ChangeNotifier {
       print(error.toString());
     }
 
-    date = DateTime.parse(data['location']['localtime'].toString());
+    //Problem was that time must be in hh:mm formate
+    //like: '2020-10-01 9:48'
+    date = DateTime.parse(
+        _correctTheTimePattern(data['location']['localtime'] as String));
+    // date = DateTime.parse(
+    //     _correctTheTimePattern('2020-05-09 9:48'));
+
 
     humidity = double.parse(data['current']['humidity'].toString()).round();
     precipitation =

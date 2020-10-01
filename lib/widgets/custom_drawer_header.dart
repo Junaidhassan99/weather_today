@@ -52,8 +52,8 @@ class CustomDrawerHeader extends StatelessWidget {
                         fit: BoxFit.scaleDown,
                         child: Center(
                           child: CircularProgressIndicator(
-                            //backgroundColor: Colors.white,
-                          ),
+                              //backgroundColor: Colors.white,
+                              ),
                         ),
                       )
                     : Image.network(
@@ -63,8 +63,12 @@ class CustomDrawerHeader extends StatelessWidget {
               ),
             ],
           ),
-          LocationSelector(textSize: 22,),
-          SizedBox(height: 5,)
+          LocationSelector(
+            textSize: 22,
+          ),
+          SizedBox(
+            height: 5,
+          )
         ],
       ),
     );
