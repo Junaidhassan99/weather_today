@@ -34,13 +34,13 @@ class _WeeklyWeatherScreenState extends State<WeeklyWeatherScreen> {
       body: RefreshIndicator(
         onRefresh: () async {
           await Provider.of<ForecastWeatherList>(context, listen: false)
-              .refreshForcastWeather();
+              .refreshForcastWeather(context);
         },
         child: SingleChildScrollView(
           physics: AlwaysScrollableScrollPhysics(),
           child: FutureBuilder(
             future: Provider.of<ForecastWeatherList>(context)
-                .loadAndSetWeeklyForcastData(),
+                .loadAndSetWeeklyForcastData(context),
             builder: (_, snapshot) {
               //print((snapshot.data as List<ForecastWeeklyWeather>)[0].date);
               return !(snapshot.connectionState == ConnectionState.done)
@@ -59,7 +59,9 @@ class _WeeklyWeatherScreenState extends State<WeeklyWeatherScreen> {
                       ),
                       child: Column(
                         children: [
-                          LocationSelector(textSize: 22,),
+                          LocationSelector(
+                            textSize: 22,
+                          ),
                           SizedBox(
                             height: 20,
                           ),
@@ -77,11 +79,7 @@ class _WeeklyWeatherScreenState extends State<WeeklyWeatherScreen> {
                           SizedBox(
                             height: 20,
                           ),
-                          // Divider(
-                          //   color: ExtraColorsUtility.customThirdColor,
-                          // ),
-                          //
-                          // CurrentWeatherConditionDescriptionWeeklyWeatherScreen(),
+
                           Divider(
                             color: ExtraColorsUtility.customThirdColor,
                           ),

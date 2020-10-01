@@ -77,7 +77,7 @@ class CustomDrawerHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: Provider.of<CurrentCondition>(context).loadCurrentCondition(),
+      future: Provider.of<CurrentCondition>(context).loadCurrentCondition(context),
       builder: (_, snapshot) {
         return (snapshot.connectionState == ConnectionState.done)
             ? _buildHeaderWidget(

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:weather_today/model/location.dart';
 
 class LocationSelector extends StatelessWidget {
   final double textSize;
@@ -16,18 +18,21 @@ class LocationSelector extends StatelessWidget {
         SizedBox(
           width: 5,
         ),
-        Text(
-          'Islamabad,',
-          softWrap: true,
-          style: TextStyle(
-            fontSize: textSize,
-            fontWeight: FontWeight.bold,
+        Flexible(
+          child: Text(
+            Provider.of<Location>(context).getSelectedCity,
+            overflow: TextOverflow.ellipsis,
+            //softWrap: true,
+            style: TextStyle(
+              fontSize: textSize,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
-        Text(
-          ' Pakistan',
-          style: TextStyle(fontSize: textSize),
-        ),
+        // Text(
+        //   ' Pakistan',
+        //   style: TextStyle(fontSize: textSize),
+        // ),
       ],
     );
   }

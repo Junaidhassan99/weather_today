@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_today/model/current_condition.dart';
 import 'package:weather_today/model/forecast_weather_list.dart';
+import 'package:weather_today/model/location.dart';
 import 'package:weather_today/screens/choose_location.dart';
 import 'package:weather_today/screens/home_screen.dart';
 
@@ -28,6 +29,9 @@ class WeatherToday extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => CurrentCondition(),
+        ),
+         ChangeNotifierProvider(
+          create: (_) => Location(),
         ),
       ],
       child: MaterialApp(

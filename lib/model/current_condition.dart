@@ -2,8 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+
 import 'package:weather_today/model/api_refrences.dart';
+import 'package:weather_today/model/location.dart';
 
 class CurrentCondition with ChangeNotifier {
   DateTime date;
@@ -38,10 +40,10 @@ class CurrentCondition with ChangeNotifier {
     return string;
   }
 
-  Future<CurrentCondition> loadCurrentCondition() async {
+  Future<CurrentCondition> loadCurrentCondition(BuildContext context) async {
     try {
       final response = await get(
-        ApiRefrences.currentConditionApi,
+        ApiRefrences.currentConditionApi+Provider.of<Location>(context).getSelectedCity,
       );
 
       data = json.decode(response.body);
@@ -88,8 +90,8 @@ class CurrentCondition with ChangeNotifier {
     );
   }
 
-  Future<void> refreshCurrentCondition() async {
-    await loadCurrentCondition();
+  Future<void> refreshCurrentCondition(BuildContext context) async {
+    await loadCurrentCondition(context);
     notifyListeners();
   }
 }

@@ -34,14 +34,14 @@ class HomeScreen extends StatelessWidget {
         onRefresh: () async {
           //print(MediaQuery.of(context).size.height);
           //_getSizes();
-          await Provider.of<CurrentCondition>(context,listen: false).refreshCurrentCondition();
+          await Provider.of<CurrentCondition>(context,listen: false).refreshCurrentCondition(context);
         },
         child: SingleChildScrollView(
           physics: AlwaysScrollableScrollPhysics(),
           child: FutureBuilder(
             //key: _keyGlobal,
             future: Provider.of<CurrentCondition>(context)
-                .loadCurrentCondition(),
+                .loadCurrentCondition(context),
             builder: (_, snapshot) {
               // if(snapshot.connectionState == ConnectionState.done){
               //   print((snapshot.data as CurrentCondition));

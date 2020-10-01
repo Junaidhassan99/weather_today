@@ -12,10 +12,11 @@ class HourlyWeatherList extends StatelessWidget {
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: Provider.of<ForecastWeatherList>(context, listen: false)
-          .loadAndSetHourlyForcastData(),
+          .loadAndSetHourlyForcastData(context),
       builder: (_, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           final snapShotData = snapshot.data as List<ForecastHourlyWeather>;
+          //print(snapShotData[0].toString());
           return Container(
             height: 100,
             child: LayoutBuilder(
@@ -29,7 +30,7 @@ class HourlyWeatherList extends StatelessWidget {
                       SizedBox(
                         width: 5,
                       ),
-                      for (int i = 0; i < 12; i++)
+                      for (int i = 0; i < 11; i++)
                         HourlyWeatherContainer(
                           temp: snapShotData[i].temp.toString(),
                           iconImageUrl: snapShotData[i].iconImageUrl,

@@ -2,7 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:provider/provider.dart';
 import 'package:weather_today/model/api_refrences.dart';
+import 'package:weather_today/model/location.dart';
 
 class ForecastWeeklyWeather {
   String iconImageUrl;
@@ -32,8 +34,10 @@ class ForecastWeatherList with ChangeNotifier {
   List<ForecastWeeklyWeather> _weeklyWeatherListData = [];
   List<ForecastHourlyWeather> _hourlyWeatherListData = [];
 
-  Future<List<ForecastWeeklyWeather>> loadAndSetWeeklyForcastData() async {
-    final response = await get(ApiRefrences.forcastApi);
+  Future<List<ForecastWeeklyWeather>> loadAndSetWeeklyForcastData(BuildContext context) async {
+    final response = await get(ApiRefrences.forcastApi +
+        Provider.of<Location>(context).getSelectedCity +
+        ApiRefrences.forcastApiEnd);
     final responseDecoded = json.decode(response.body) as Map<String, dynamic>;
     final responseListData =
         responseDecoded['forecast']['forecastday'] as List<dynamic>;
@@ -59,8 +63,10 @@ class ForecastWeatherList with ChangeNotifier {
     return _weeklyWeatherListData;
   }
 
-  Future<List<ForecastHourlyWeather>> loadAndSetHourlyForcastData() async {
-    final response = await get(ApiRefrences.forcastApi);
+  Future<List<ForecastHourlyWeather>> loadAndSetHourlyForcastData(BuildContext context) async {
+    final response = await get(ApiRefrences.forcastApi+
+        Provider.of<Location>(context).getSelectedCity +
+        ApiRefrences.forcastApiEnd);
     final responseDecoded = json.decode(response.body) as Map<String, dynamic>;
     final responseListData0 =
         responseDecoded['forecast']['forecastday'][0]['hour'] as List<dynamic>;
@@ -95,9 +101,9 @@ class ForecastWeatherList with ChangeNotifier {
     return _hourlyWeatherListData;
   }
 
-  Future<void> refreshForcastWeather() async {
-    await loadAndSetWeeklyForcastData();
-    await loadAndSetHourlyForcastData();
+  Future<void> refreshForcastWeather(BuildContext context) async {
+    await loadAndSetWeeklyForcastData(context);
+    await loadAndSetHourlyForcastData(context);
     notifyListeners();
   }
 
