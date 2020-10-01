@@ -43,7 +43,9 @@ class CurrentCondition with ChangeNotifier {
   Future<CurrentCondition> loadCurrentCondition(BuildContext context) async {
     try {
       final response = await get(
-        ApiRefrences.currentConditionApi+Provider.of<Location>(context).getSelectedCity,
+        ApiRefrences.currentConditionApi(
+          Provider.of<Location>(context,listen: false).getSelectedCity,
+        ),
       );
 
       data = json.decode(response.body);
@@ -59,7 +61,6 @@ class CurrentCondition with ChangeNotifier {
         _correctTheTimePattern(data['location']['localtime'] as String));
     // date = DateTime.parse(
     //     _correctTheTimePattern('2020-05-09 9:48'));
-
 
     humidity = double.parse(data['current']['humidity'].toString()).round();
     precipitation =

@@ -19,7 +19,7 @@ class LocationModel {
 
 class Location with ChangeNotifier {
   List<LocationModel> _locationList = [];
-  String _selectedCity='London';
+  String _selectedCity='Lahaur, Punjab, Pakistan';
   void setSelectedCity(String name) {
     _selectedCity = name;
   }
@@ -30,7 +30,7 @@ class Location with ChangeNotifier {
 
   void loadLocationList(String name) async {
     final response =
-        await get(ApiRefrences.autoCompleteLocationApi + '&q=$name');
+        await get(ApiRefrences.autoCompleteLocationApi(name));
     print(json.decode(response.body));
     final responseData = json.decode(response.body) as List<dynamic>;
     //print('length: '+responseData.length.toString());

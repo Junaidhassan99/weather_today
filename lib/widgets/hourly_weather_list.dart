@@ -16,7 +16,6 @@ class HourlyWeatherList extends StatelessWidget {
       builder: (_, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           final snapShotData = snapshot.data as List<ForecastHourlyWeather>;
-          //print(snapShotData[0].toString());
           return Container(
             height: 100,
             child: LayoutBuilder(
@@ -27,14 +26,23 @@ class HourlyWeatherList extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      SizedBox(
-                        width: 5,
-                      ),
-                      for (int i = 0; i < 11; i++)
-                        HourlyWeatherContainer(
-                          temp: snapShotData[i].temp.toString(),
-                          iconImageUrl: snapShotData[i].iconImageUrl,
-                          time: snapShotData[i].time,
+                      if (snapShotData != null)
+                        SizedBox(
+                          width: 5,
+                        ),
+                      if (snapShotData != null)
+                        ...snapShotData
+                            .map(
+                              (data) => HourlyWeatherContainer(
+                                temp: data.temp.toString(),
+                                iconImageUrl: data.iconImageUrl,
+                                time: data.time,
+                              ),
+                            )
+                            .toList()
+                      else
+                        Center(
+                          child: Text('Connection Problem!'),
                         ),
                     ],
                   ),

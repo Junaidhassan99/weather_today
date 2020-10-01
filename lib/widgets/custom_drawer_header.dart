@@ -51,9 +51,7 @@ class CustomDrawerHeader extends StatelessWidget {
                     ? FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Center(
-                          child: CircularProgressIndicator(
-                              //backgroundColor: Colors.white,
-                              ),
+                          child: CircularProgressIndicator(),
                         ),
                       )
                     : Image.network(
@@ -77,7 +75,8 @@ class CustomDrawerHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: Provider.of<CurrentCondition>(context).loadCurrentCondition(context),
+      future:
+          Provider.of<CurrentCondition>(context).loadCurrentCondition(context),
       builder: (_, snapshot) {
         return (snapshot.connectionState == ConnectionState.done)
             ? _buildHeaderWidget(

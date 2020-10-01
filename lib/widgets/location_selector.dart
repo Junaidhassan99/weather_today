@@ -20,7 +20,7 @@ class LocationSelector extends StatelessWidget {
         ),
         Flexible(
           child: Text(
-            Provider.of<Location>(context).getSelectedCity,
+            Provider.of<Location>(context, listen: false).getSelectedCity,
             overflow: TextOverflow.ellipsis,
             //softWrap: true,
             style: TextStyle(

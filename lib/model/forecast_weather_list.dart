@@ -34,10 +34,13 @@ class ForecastWeatherList with ChangeNotifier {
   List<ForecastWeeklyWeather> _weeklyWeatherListData = [];
   List<ForecastHourlyWeather> _hourlyWeatherListData = [];
 
-  Future<List<ForecastWeeklyWeather>> loadAndSetWeeklyForcastData(BuildContext context) async {
-    final response = await get(ApiRefrences.forcastApi +
-        Provider.of<Location>(context).getSelectedCity +
-        ApiRefrences.forcastApiEnd);
+  Future<List<ForecastWeeklyWeather>> loadAndSetWeeklyForcastData(
+      BuildContext context) async {
+    final response = await get(
+      ApiRefrences.forcastApi(
+        Provider.of<Location>(context,listen: false).getSelectedCity,
+      ),
+    );
     final responseDecoded = json.decode(response.body) as Map<String, dynamic>;
     final responseListData =
         responseDecoded['forecast']['forecastday'] as List<dynamic>;
@@ -63,10 +66,11 @@ class ForecastWeatherList with ChangeNotifier {
     return _weeklyWeatherListData;
   }
 
-  Future<List<ForecastHourlyWeather>> loadAndSetHourlyForcastData(BuildContext context) async {
-    final response = await get(ApiRefrences.forcastApi+
-        Provider.of<Location>(context).getSelectedCity +
-        ApiRefrences.forcastApiEnd);
+  Future<List<ForecastHourlyWeather>> loadAndSetHourlyForcastData(
+      BuildContext context) async {
+    final response = await get(ApiRefrences.forcastApi(
+      Provider.of<Location>(context,listen: false).getSelectedCity,
+    ));
     final responseDecoded = json.decode(response.body) as Map<String, dynamic>;
     final responseListData0 =
         responseDecoded['forecast']['forecastday'][0]['hour'] as List<dynamic>;
@@ -74,7 +78,7 @@ class ForecastWeatherList with ChangeNotifier {
         responseDecoded['forecast']['forecastday'][1]['hour'] as List<dynamic>;
     final responseListData = responseListData0 + responseListData1;
 
-    //print('length=' + responseListData.length.toString());
+    print('length=' + responseListData.length.toString());
 
     final hourlyWeatherListData48Hours = responseListData.map((e) {
       int temp = double.parse(e['temp_c'].toString()).round();
@@ -95,6 +99,8 @@ class ForecastWeatherList with ChangeNotifier {
     _hourlyWeatherListData = hourlyWeatherListData48Hours.where((element) {
       return element.time.isAfter(DateTime.now());
     }).toList();
+
+    print('length=' + hourlyWeatherListData48Hours.length.toString());
 
     //print('length 2=' + _hourlyWeatherListData.length.toString());
 

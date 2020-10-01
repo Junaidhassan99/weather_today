@@ -37,7 +37,9 @@ class HourlyWeatherContainer extends StatelessWidget {
               child: Column(
                 children: [
                   Container(
-                      height: 35, child: Image.network('http:' + iconImageUrl)),
+                    height: 35,
+                    child: Image.network('http:' + iconImageUrl),
+                  ),
                   // Icon(
                   //   icon,
                   //   //Icons.ac_unit,
