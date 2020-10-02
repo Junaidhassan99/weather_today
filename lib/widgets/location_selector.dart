@@ -14,8 +14,8 @@ class LocationSelector extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(Icons.location_on),
-        SizedBox(
+        const Icon(Icons.location_on),
+        const SizedBox(
           width: 5,
         ),
         Flexible(

@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       drawer: CustomDrawer(),
       appBar: AppBar(
-        title: Text('Weather Today'),
+        title:const Text('Weather Today'),
       ),
       body: RefreshIndicator(
         onRefresh: () async {
@@ -46,7 +46,7 @@ class HomeScreen extends StatelessWidget {
               return !(snapshot.connectionState == ConnectionState.done)
                   ? Container(
                       height: _bodyHeight(context),
-                      child: Center(
+                      child:const Center(
                         child: CircularProgressIndicator(),
                       ),
                     )
@@ -70,11 +70,11 @@ class HomeScreen extends StatelessWidget {
                                 BasicWeatherData(
                                   loadedData: snapshot.data as CurrentCondition,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
                                 WeeklyWeatherButtons(),
-                                Divider(),
+                                const Divider(),
                               ],
                             ),
                           ),

@@ -19,19 +19,19 @@ class BasicWeatherData extends StatelessWidget {
         LocationSelector(
           textSize: 22,
         ),
-        SizedBox(
+       const  SizedBox(
           height: 10,
         ),
-        Text(
+        const Text(
           'Today',
-          style: TextStyle(fontSize: 30),
+          style:const  TextStyle(fontSize: 30),
         ),
         Text(
           '$dateData',
           //'Wed, 3 Dec',
-          style: TextStyle(fontSize: 14),
+          style:const  TextStyle(fontSize: 14),
         ),
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         Image.network('http:' + loadedData.iconImageUrl),
@@ -41,18 +41,18 @@ class BasicWeatherData extends StatelessWidget {
             Text(
               '${loadedData.temp}',
               //'-1',
-              style: TextStyle(fontSize: 60),
+              style:const  TextStyle(fontSize: 60),
             ),
-            Text(
+            const Text(
               '°C',
-              style: TextStyle(fontSize: 18),
+              style:const  TextStyle(fontSize: 18),
             ),
           ],
         ),
         Text(
           'Fells like ${loadedData.tempFeelsLike}°',
           //'Fells like 3°',
-          style: TextStyle(fontSize: 16),
+          style: const TextStyle(fontSize: 16),
         ),
       ],
     );

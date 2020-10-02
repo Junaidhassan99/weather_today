@@ -29,7 +29,7 @@ class _WeeklyWeatherScreenState extends State<WeeklyWeatherScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Weather Today'),
+        title:const Text('Weather Today'),
       ),
       body: RefreshIndicator(
         onRefresh: () async {
@@ -46,13 +46,13 @@ class _WeeklyWeatherScreenState extends State<WeeklyWeatherScreen> {
               return !(snapshot.connectionState == ConnectionState.done)
                   ? Container(
                       height: _bodyHeight(context),
-                      child: Center(
+                      child:const  Center(
                         child: CircularProgressIndicator(),
                       ),
                     )
                   : Container(
                    
-                      padding: EdgeInsets.only(
+                      padding:const  EdgeInsets.only(
                         top: WeeklyWeatherScreen.defaultPadding,
                         left: WeeklyWeatherScreen.defaultPadding,
                         right: WeeklyWeatherScreen.defaultPadding,
@@ -62,25 +62,25 @@ class _WeeklyWeatherScreenState extends State<WeeklyWeatherScreen> {
                           LocationSelector(
                             textSize: 22,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Container(
                             alignment: Alignment.topLeft,
-                            child: Text(
+                            child:const  Text(
                               'Next 3 days',
                               style: TextStyle(fontSize: 30),
                             ),
                           ),
-                          SizedBox(
+                         const  SizedBox(
                             height: 20,
                           ),
                           //TodayWeatherTile(),
-                          SizedBox(
+                         const  SizedBox(
                             height: 20,
                           ),
 
-                          Divider(
+                          const Divider(
                             color: ExtraColorsUtility.customThirdColor,
                           ),
                           NextFiveDaysWeatherTiles(

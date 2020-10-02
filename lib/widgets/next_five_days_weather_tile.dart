@@ -30,7 +30,7 @@ class NextFiveDaysWeatherTiles extends StatelessWidget {
               minTemp: listData[index].minTemp,
             ),
           ),
-          Divider(
+         const Divider(
             color: ExtraColorsUtility.customThirdColor,
           )
         ],

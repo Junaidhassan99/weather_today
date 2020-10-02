@@ -53,7 +53,7 @@ class CurrentWeatherConditionsDescription extends StatelessWidget {
         border: Border.all(
           color: ExtraColorsUtility.customSecondColor,
         ),
-        borderRadius: BorderRadius.only(
+        borderRadius:const  BorderRadius.only(
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),
         ),

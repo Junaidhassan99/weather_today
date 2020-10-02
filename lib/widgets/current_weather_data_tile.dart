@@ -10,11 +10,10 @@ class CurrentWeatherDataTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-    
       children: [
         Text(
           title,
-          style: TextStyle(
+          style: const TextStyle(
             color: ExtraColorsUtility.customThirdColor,
           ),
         ),
@@ -24,8 +23,10 @@ class CurrentWeatherDataTile extends StatelessWidget {
             Text(
               value,
               //'7:38',
-              style: TextStyle(
-                  color: ExtraColorsUtility.customSecondColor, fontSize: 26),
+              style:const  TextStyle(
+                color: ExtraColorsUtility.customSecondColor,
+                fontSize: 26,
+              ),
             ),
             Container(
               height: 20,
@@ -33,7 +34,7 @@ class CurrentWeatherDataTile extends StatelessWidget {
               child: Text(
                 unit,
                 //'am',
-                style: TextStyle(
+                style:const  TextStyle(
                   color: ExtraColorsUtility.customSecondColor,
                 ),
               ),

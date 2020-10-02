@@ -12,7 +12,7 @@ class CustomDrawerHeader extends StatelessWidget {
     CurrentCondition data,
   ) {
     return Container(
-      padding: EdgeInsets.all(10),
+      padding:const  EdgeInsets.all(10),
       child: Column(
         children: [
           Row(
@@ -20,14 +20,14 @@ class CustomDrawerHeader extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     'Weather Today',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(
@@ -36,11 +36,11 @@ class CustomDrawerHeader extends StatelessWidget {
                       Text(
                         data == null ? '-' : '${data.temp}',
                         //'-1',
-                        style: TextStyle(fontSize: 60),
+                        style:const  TextStyle(fontSize: 60),
                       ),
                       Text(
                         data == null ? '' : '°C',
-                        style: TextStyle(fontSize: 18),
+                        style:const  TextStyle(fontSize: 18),
                       ),
                     ],
                   )
@@ -50,7 +50,7 @@ class CustomDrawerHeader extends StatelessWidget {
                 child: data == null
                     ? FittedBox(
                         fit: BoxFit.scaleDown,
-                        child: Center(
+                        child:const  Center(
                           child: CircularProgressIndicator(),
                         ),
                       )
@@ -64,7 +64,7 @@ class CustomDrawerHeader extends StatelessWidget {
           LocationSelector(
             textSize: 22,
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           )
         ],

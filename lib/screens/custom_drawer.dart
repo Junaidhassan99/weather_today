@@ -11,20 +11,20 @@ class CustomDrawer extends StatelessWidget {
       child: ListView(
         children: [
           CustomDrawerHeader(),
-          Divider(
+          const Divider(
             color: ExtraColorsUtility.customFirstColor,
           ),
           ListTile(
             onTap: () =>
                 Navigator.of(context).pushNamed(ChooseLocation.routeName),
-            leading: Icon(Icons.location_on),
+            leading:const Icon(Icons.location_on),
             title: Text(
               'Choose a city',
               style: Theme.of(context).textTheme.headline1,
             
             ),
           ),
-          Divider(
+         const Divider(
             color: ExtraColorsUtility.customFirstColor,
           ),
         ],

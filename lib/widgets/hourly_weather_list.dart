@@ -27,7 +27,7 @@ class HourlyWeatherList extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       if (snapShotData != null)
-                        SizedBox(
+                        const SizedBox(
                           width: 5,
                         ),
                       if (snapShotData != null)
@@ -41,7 +41,7 @@ class HourlyWeatherList extends StatelessWidget {
                             )
                             .toList()
                       else
-                        Center(
+                        const Center(
                           child: Text('Connection Problem!'),
                         ),
                     ],
@@ -51,7 +51,7 @@ class HourlyWeatherList extends StatelessWidget {
             ),
           );
         } else {
-          return CircularProgressIndicator();
+          return const CircularProgressIndicator();
         }
       },
     );

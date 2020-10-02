@@ -15,14 +15,14 @@ class WeeklyWeatherButtons extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Text(
+          const Text(
             'Next 3 days',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
           ),
-          Icon(
+          const Icon(
             Icons.navigate_next,
           )
         ],

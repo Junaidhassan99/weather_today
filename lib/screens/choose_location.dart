@@ -32,7 +32,7 @@ class _ChooseLocationState extends State<ChooseLocation> {
           );
         },
         trailing: IconButton(
-          icon: Icon(Icons.search),
+          icon:const Icon(Icons.search),
           onPressed: () {
             setState(() {
               Provider.of<Location>(context, listen: false)
@@ -48,7 +48,7 @@ class _ChooseLocationState extends State<ChooseLocation> {
           nameData = value;
         },
         onTap: () {},
-        decoration: InputDecoration.collapsed(
+        decoration:const InputDecoration.collapsed(
           hintText: "Search...",
         ),
       ),

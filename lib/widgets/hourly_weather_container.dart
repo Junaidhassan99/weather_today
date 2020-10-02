@@ -13,7 +13,6 @@ class HourlyWeatherContainer extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    
     return Row(
       children: [
         Column(
@@ -22,7 +21,7 @@ class HourlyWeatherContainer extends StatelessWidget {
               DateFormat('HH:mm').format(time),
               //'Now',
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             Container(
@@ -33,26 +32,26 @@ class HourlyWeatherContainer extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
                 color: ExtraColorsUtility.customFirstColor,
               ),
-              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
               child: Column(
                 children: [
                   Container(
                     height: 35,
                     child: Image.network('http:' + iconImageUrl),
                   ),
-               
                   Text(
                     '$temp°',
                     //'-1°C',
-                    style:
-                        TextStyle(color: ExtraColorsUtility.customSecondColor),
+                    style: TextStyle(
+                      color: ExtraColorsUtility.customSecondColor,
+                    ),
                   ),
                 ],
               ),
             )
           ],
         ),
-        SizedBox(
+        const SizedBox(
           width: 5,
         )
       ],
