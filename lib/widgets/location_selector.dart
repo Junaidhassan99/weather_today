@@ -34,7 +34,7 @@ class LocationSelector extends StatelessWidget {
                   : Text(
                       (snapshot.data as String),
                       overflow: TextOverflow.ellipsis,
-                      //softWrap: true,
+                      
                       style: TextStyle(
                         fontSize: textSize,
                         fontWeight: FontWeight.bold,
@@ -43,10 +43,7 @@ class LocationSelector extends StatelessWidget {
             },
           ),
         ),
-        // Text(
-        //   ' Pakistan',
-        //   style: TextStyle(fontSize: textSize),
-        // ),
+   
       ],
     );
   }

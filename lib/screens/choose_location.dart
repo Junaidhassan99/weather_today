@@ -40,16 +40,12 @@ class _ChooseLocationState extends State<ChooseLocation> {
             });
           },
         ),
-        // drawer: Drawer(
-        //   child: Container(),
-        // ),
         onChanged: (String value) {
           setState(() {
             Provider.of<Location>(context, listen: false)
                 .loadLocationList(value);
           });
           nameData = value;
-          print(value);
         },
         onTap: () {},
         decoration: InputDecoration.collapsed(

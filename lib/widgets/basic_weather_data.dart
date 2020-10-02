@@ -16,7 +16,9 @@ class BasicWeatherData extends StatelessWidget {
     final dateData = DateFormat('EEE, d MMM ').format(loadedData.date);
     return Column(
       children: [
-        LocationSelector(textSize: 22,),
+        LocationSelector(
+          textSize: 22,
+        ),
         SizedBox(
           height: 10,
         ),
@@ -32,12 +34,10 @@ class BasicWeatherData extends StatelessWidget {
         SizedBox(
           height: 5,
         ),
-         Image.network('http:'+loadedData.iconImageUrl),
+        Image.network('http:' + loadedData.iconImageUrl),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          //crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-           
             Text(
               '${loadedData.temp}',
               //'-1',

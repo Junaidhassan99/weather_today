@@ -13,7 +13,7 @@ class HourlyWeatherContainer extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    //print(iconImageUrl.replaceFirst('//', '/'));
+    
     return Row(
       children: [
         Column(
@@ -40,11 +40,7 @@ class HourlyWeatherContainer extends StatelessWidget {
                     height: 35,
                     child: Image.network('http:' + iconImageUrl),
                   ),
-                  // Icon(
-                  //   icon,
-                  //   //Icons.ac_unit,
-                  //   color: Colors.black,
-                  // ),
+               
                   Text(
                     '$temp°',
                     //'-1°C',

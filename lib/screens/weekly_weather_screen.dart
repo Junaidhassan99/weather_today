@@ -42,7 +42,7 @@ class _WeeklyWeatherScreenState extends State<WeeklyWeatherScreen> {
             future: Provider.of<ForecastWeatherList>(context)
                 .loadAndSetWeeklyForcastData(context),
             builder: (_, snapshot) {
-              //print((snapshot.data as List<ForecastWeeklyWeather>)[0].date);
+             
               return !(snapshot.connectionState == ConnectionState.done)
                   ? Container(
                       height: _bodyHeight(context),
@@ -51,7 +51,7 @@ class _WeeklyWeatherScreenState extends State<WeeklyWeatherScreen> {
                       ),
                     )
                   : Container(
-                      //width: double.infinity,
+                   
                       padding: EdgeInsets.only(
                         top: WeeklyWeatherScreen.defaultPadding,
                         left: WeeklyWeatherScreen.defaultPadding,

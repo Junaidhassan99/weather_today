@@ -12,7 +12,7 @@ import 'package:weather_today/widgets/weekly_weather_buttons.dart';
 class HomeScreen extends StatelessWidget {
   static const routeName = '/home-screen';
   static const double defaultPadding = 20;
-  //final GlobalKey _keyGlobal = GlobalKey();
+  
 
   double _bodyHeight(BuildContext context) {
     final bodyHeightData = MediaQuery.of(context).size.height -
@@ -32,20 +32,17 @@ class HomeScreen extends StatelessWidget {
       ),
       body: RefreshIndicator(
         onRefresh: () async {
-          //print(MediaQuery.of(context).size.height);
-          //_getSizes();
+      
           await Provider.of<CurrentCondition>(context,listen: false).refreshCurrentCondition(context);
         },
         child: SingleChildScrollView(
           physics: AlwaysScrollableScrollPhysics(),
           child: FutureBuilder(
-            //key: _keyGlobal,
+         
             future: Provider.of<CurrentCondition>(context)
                 .loadCurrentCondition(context),
             builder: (_, snapshot) {
-              // if(snapshot.connectionState == ConnectionState.done){
-              //   print((snapshot.data as CurrentCondition));
-              // }
+             
               return !(snapshot.connectionState == ConnectionState.done)
                   ? Container(
                       height: _bodyHeight(context),

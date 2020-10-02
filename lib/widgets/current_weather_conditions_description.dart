@@ -60,8 +60,7 @@ class CurrentWeatherConditionsDescription extends StatelessWidget {
         color: ExtraColorsUtility.customFirstColor,
       ),
       child: Column(
-        //PRECIPIATION,,
-        //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    
         children: [
           _buildCurrentConditionsDescriptionRow(
               firstTitle: 'Cloud Cover',

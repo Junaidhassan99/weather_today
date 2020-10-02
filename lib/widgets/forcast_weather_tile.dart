@@ -17,7 +17,7 @@ class ForcastWeatherTile extends StatelessWidget {
     return Row(
       children: [
         Image.network('http:'+weeklyWeatherData.iconImageUrl),
-        //Icon(weeklyWeatherData.icon),
+       
         SizedBox(
           width: 10,
         ),

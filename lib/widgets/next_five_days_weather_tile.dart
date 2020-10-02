@@ -15,8 +15,6 @@ class NextFiveDaysWeatherTiles extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final weeklyWeatherListData =
-    //     Provider.of<WeeklyWeatherList>(context).getWeeklyWeatherListData;
     return ListView.builder(
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,

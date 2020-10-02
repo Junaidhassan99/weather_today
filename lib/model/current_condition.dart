@@ -52,8 +52,7 @@ class CurrentCondition with ChangeNotifier {
       );
 
       data = json.decode(response.body);
-      print(response.statusCode);
-      //print(data.toString());
+     
     } catch (error) {
       print(error.toString());
     }
@@ -62,8 +61,7 @@ class CurrentCondition with ChangeNotifier {
     //like: '2020-10-01 9:48'
     date = DateTime.parse(
         _correctTheTimePattern(data['location']['localtime'] as String));
-    // date = DateTime.parse(
-    //     _correctTheTimePattern('2020-05-09 9:48'));
+    
 
     humidity = double.parse(data['current']['humidity'].toString()).round();
     precipitation =
