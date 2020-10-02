@@ -19,14 +19,28 @@ class LocationSelector extends StatelessWidget {
           width: 5,
         ),
         Flexible(
-          child: Text(
-            Provider.of<Location>(context, listen: false).getSelectedCity,
-            overflow: TextOverflow.ellipsis,
-            //softWrap: true,
-            style: TextStyle(
-              fontSize: textSize,
-              fontWeight: FontWeight.bold,
-            ),
+          child: FutureBuilder(
+            future:
+                Provider.of<Location>(context, listen: false).getSelectedCity(),
+            builder: (_, snapshot) {
+              return !(snapshot.connectionState == ConnectionState.done)
+                  ? Text(
+                      '-',
+                      style: TextStyle(
+                        fontSize: textSize,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )
+                  : Text(
+                      (snapshot.data as String),
+                      overflow: TextOverflow.ellipsis,
+                      //softWrap: true,
+                      style: TextStyle(
+                        fontSize: textSize,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    );
+            },
           ),
         ),
         // Text(

@@ -38,7 +38,7 @@ class ForecastWeatherList with ChangeNotifier {
       BuildContext context) async {
     final response = await get(
       ApiRefrences.forcastApi(
-        Provider.of<Location>(context,listen: false).getSelectedCity,
+        await Provider.of<Location>(context,listen: false).getSelectedCity(),
       ),
     );
     final responseDecoded = json.decode(response.body) as Map<String, dynamic>;
@@ -69,7 +69,7 @@ class ForecastWeatherList with ChangeNotifier {
   Future<List<ForecastHourlyWeather>> loadAndSetHourlyForcastData(
       BuildContext context) async {
     final response = await get(ApiRefrences.forcastApi(
-      Provider.of<Location>(context,listen: false).getSelectedCity,
+      await Provider.of<Location>(context,listen: false).getSelectedCity(),
     ));
     final responseDecoded = json.decode(response.body) as Map<String, dynamic>;
     final responseListData0 =

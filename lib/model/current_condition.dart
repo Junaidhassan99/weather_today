@@ -7,6 +7,8 @@ import 'package:provider/provider.dart';
 import 'package:weather_today/model/api_refrences.dart';
 import 'package:weather_today/model/location.dart';
 
+
+
 class CurrentCondition with ChangeNotifier {
   DateTime date;
   int temp; //'C
@@ -41,10 +43,11 @@ class CurrentCondition with ChangeNotifier {
   }
 
   Future<CurrentCondition> loadCurrentCondition(BuildContext context) async {
+    
     try {
       final response = await get(
         ApiRefrences.currentConditionApi(
-          Provider.of<Location>(context,listen: false).getSelectedCity,
+          await Provider.of<Location>(context, listen: false).getSelectedCity(),
         ),
       );
 
