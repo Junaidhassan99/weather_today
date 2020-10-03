@@ -9,6 +9,16 @@ class LocationSelector extends StatelessWidget {
     Key key,
   }) : super(key: key);
 
+  Widget get errorTextWidget {
+    return Text(
+      '-',
+      style: TextStyle(
+        fontSize: textSize,
+        fontWeight: FontWeight.bold,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -23,18 +33,15 @@ class LocationSelector extends StatelessWidget {
             future:
                 Provider.of<Location>(context, listen: false).getSelectedCity(),
             builder: (_, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done &&
+                  snapshot.data == null) {
+                return errorTextWidget;
+              }
               return !(snapshot.connectionState == ConnectionState.done)
-                  ? Text(
-                      '-',
-                      style: TextStyle(
-                        fontSize: textSize,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    )
+                  ? errorTextWidget
                   : Text(
                       (snapshot.data as String),
                       overflow: TextOverflow.ellipsis,
-                      
                       style: TextStyle(
                         fontSize: textSize,
                         fontWeight: FontWeight.bold,
@@ -43,7 +50,6 @@ class LocationSelector extends StatelessWidget {
             },
           ),
         ),
-   
       ],
     );
   }

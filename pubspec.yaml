@@ -28,6 +28,7 @@ dependencies:
   http: ^0.12.2
   floating_search_bar: ^0.3.0
   location: ^3.0.2
+ 
 
 
   # The following adds the Cupertino Icons font to your application.

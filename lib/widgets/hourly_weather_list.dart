@@ -14,6 +14,12 @@ class HourlyWeatherList extends StatelessWidget {
       future: Provider.of<ForecastWeatherList>(context, listen: false)
           .loadAndSetHourlyForcastData(context),
       builder: (_, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done &&
+            snapshot.data == null) {
+          return const Center(
+            child: Text('Connection Problem!'),
+          );
+        }
         if (snapshot.connectionState == ConnectionState.done) {
           final snapShotData = snapshot.data as List<ForecastHourlyWeather>;
           return Container(
@@ -26,24 +32,18 @@ class HourlyWeatherList extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      if (snapShotData != null)
-                        const SizedBox(
-                          width: 5,
-                        ),
-                      if (snapShotData != null)
-                        ...snapShotData
-                            .map(
-                              (data) => HourlyWeatherContainer(
-                                temp: data.temp.toString(),
-                                iconImageUrl: data.iconImageUrl,
-                                time: data.time,
-                              ),
-                            )
-                            .toList()
-                      else
-                        const Center(
-                          child: Text('Connection Problem!'),
-                        ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      ...snapShotData
+                          .map(
+                            (data) => HourlyWeatherContainer(
+                              temp: data.temp.toString(),
+                              iconImageUrl: data.iconImageUrl,
+                              time: data.time,
+                            ),
+                          )
+                          .toList()
                     ],
                   ),
                 ),

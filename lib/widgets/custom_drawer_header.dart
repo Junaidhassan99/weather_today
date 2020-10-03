@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_today/model/current_condition.dart';
+import 'package:weather_today/utilities/general_utilities.dart';
 import 'package:weather_today/widgets/location_selector.dart';
 
 class CustomDrawerHeader extends StatelessWidget {
@@ -12,7 +13,7 @@ class CustomDrawerHeader extends StatelessWidget {
     CurrentCondition data,
   ) {
     return Container(
-      padding:const  EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       child: Column(
         children: [
           Row(
@@ -36,11 +37,11 @@ class CustomDrawerHeader extends StatelessWidget {
                       Text(
                         data == null ? '-' : '${data.temp}',
                         //'-1',
-                        style:const  TextStyle(fontSize: 60),
+                        style: const TextStyle(fontSize: 60),
                       ),
                       Text(
                         data == null ? '' : '°C',
-                        style:const  TextStyle(fontSize: 18),
+                        style: const TextStyle(fontSize: 18),
                       ),
                     ],
                   )
@@ -50,8 +51,9 @@ class CustomDrawerHeader extends StatelessWidget {
                 child: data == null
                     ? FittedBox(
                         fit: BoxFit.scaleDown,
-                        child:const  Center(
-                          child: CircularProgressIndicator(),
+                        child: const Center(
+                          child: Text('-'),
+                          //CircularProgressIndicator(),
                         ),
                       )
                     : Image.network(
@@ -78,6 +80,10 @@ class CustomDrawerHeader extends StatelessWidget {
       future:
           Provider.of<CurrentCondition>(context).loadCurrentCondition(context),
       builder: (_, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done &&
+            snapshot.data == null) {
+          return _buildHeaderWidget(null);
+        }
         return (snapshot.connectionState == ConnectionState.done)
             ? _buildHeaderWidget(
                 (snapshot.data as CurrentCondition),

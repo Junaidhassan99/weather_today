@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_today/model/current_condition.dart';
+import 'package:weather_today/utilities/general_utilities.dart';
 
 import 'package:weather_today/widgets/current_weather_conditions_description.dart';
 import 'package:weather_today/screens/custom_drawer.dart';
@@ -12,7 +13,6 @@ import 'package:weather_today/widgets/weekly_weather_buttons.dart';
 class HomeScreen extends StatelessWidget {
   static const routeName = '/home-screen';
   static const double defaultPadding = 20;
-  
 
   double _bodyHeight(BuildContext context) {
     final bodyHeightData = MediaQuery.of(context).size.height -
@@ -22,31 +22,42 @@ class HomeScreen extends StatelessWidget {
     return bodyHeightData;
   }
 
+ 
 
   @override
   Widget build(BuildContext context) {
+    //errorAlert(context);
     return Scaffold(
       drawer: CustomDrawer(),
       appBar: AppBar(
-        title:const Text('Weather Today'),
+        title: const Text('Weather Today'),
       ),
       body: RefreshIndicator(
         onRefresh: () async {
-      
-          await Provider.of<CurrentCondition>(context,listen: false).refreshCurrentCondition(context);
+          await Provider.of<CurrentCondition>(context, listen: false)
+              .refreshCurrentCondition(context);
         },
         child: SingleChildScrollView(
           physics: AlwaysScrollableScrollPhysics(),
           child: FutureBuilder(
-         
             future: Provider.of<CurrentCondition>(context)
                 .loadCurrentCondition(context),
             builder: (_, snapshot) {
-             
+              if (snapshot.connectionState == ConnectionState.done &&
+                  snapshot.data == null) {
+                return GeneralUtilities.connectionProblemWidget(
+                  _bodyHeight(context),
+                  () async {
+                    await Provider.of<CurrentCondition>(context, listen: false)
+                        .refreshCurrentCondition(context);
+                  },
+                );
+              }
+
               return !(snapshot.connectionState == ConnectionState.done)
                   ? Container(
                       height: _bodyHeight(context),
-                      child:const Center(
+                      child: const Center(
                         child: CircularProgressIndicator(),
                       ),
                     )
@@ -61,9 +72,9 @@ class HomeScreen extends StatelessWidget {
                           Container(
                             width: double.infinity,
                             padding: EdgeInsets.only(
-                              top: defaultPadding,
-                              left: defaultPadding,
-                              right: defaultPadding,
+                              top: HomeScreen.defaultPadding,
+                              left: HomeScreen.defaultPadding,
+                              right: HomeScreen.defaultPadding,
                             ),
                             child: Column(
                               children: [

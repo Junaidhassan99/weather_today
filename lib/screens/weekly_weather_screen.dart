@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:weather_today/main.dart';
 
 import 'package:weather_today/model/forecast_weather_list.dart';
+import 'package:weather_today/utilities/general_utilities.dart';
 
 import 'package:weather_today/widgets/location_selector.dart';
 import 'package:weather_today/widgets/next_five_days_weather_tile.dart';
@@ -42,6 +43,17 @@ class _WeeklyWeatherScreenState extends State<WeeklyWeatherScreen> {
             future: Provider.of<ForecastWeatherList>(context)
                 .loadAndSetWeeklyForcastData(context),
             builder: (_, snapshot) {
+
+               if (snapshot.connectionState == ConnectionState.done &&
+                  snapshot.data == null) {
+                return GeneralUtilities.connectionProblemWidget(
+                  _bodyHeight(context),
+                  () async {
+                    await Provider.of<ForecastWeatherList>(context, listen: false)
+              .refreshForcastWeather(context);
+                  },
+                );
+              }
              
               return !(snapshot.connectionState == ConnectionState.done)
                   ? Container(
