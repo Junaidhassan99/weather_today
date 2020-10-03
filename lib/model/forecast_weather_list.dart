@@ -36,58 +36,70 @@ class ForecastWeatherList with ChangeNotifier {
 
   Future<List<ForecastWeeklyWeather>> loadAndSetWeeklyForcastData(
       BuildContext context) async {
-    final response = await get(
-      ApiRefrences.forcastApi(
-        await Provider.of<Location>(context, listen: false).getSelectedCity(),
-      ),
-    );
-    final responseDecoded = json.decode(response.body) as Map<String, dynamic>;
-    final responseListData =
-        responseDecoded['forecast']['forecastday'] as List<dynamic>;
-
-    _weeklyWeatherListData = responseListData.map((e) {
-      int maxTemp = double.parse(e['day']['maxtemp_c'].toString()).round();
-      int minTemp = double.parse(e['day']['mintemp_c'].toString()).round();
-      String iconImageUrl = e['day']['condition']['icon'].toString();
-
-      return ForecastWeeklyWeather(
-        iconImageUrl: iconImageUrl,
-        date: DateTime.parse(e['date'].toString()),
-        maxTemp: maxTemp,
-        minTemp: minTemp,
+    try {
+      final response = await get(
+        ApiRefrences.forcastApi(
+          await Provider.of<Location>(context, listen: false).getSelectedCity(),
+        ),
       );
-    }).toList();
+      final responseDecoded =
+          json.decode(response.body) as Map<String, dynamic>;
+      final responseListData =
+          responseDecoded['forecast']['forecastday'] as List<dynamic>;
+
+      _weeklyWeatherListData = responseListData.map((e) {
+        int maxTemp = double.parse(e['day']['maxtemp_c'].toString()).round();
+        int minTemp = double.parse(e['day']['mintemp_c'].toString()).round();
+        String iconImageUrl = e['day']['condition']['icon'].toString();
+
+        return ForecastWeeklyWeather(
+          iconImageUrl: iconImageUrl,
+          date: DateTime.parse(e['date'].toString()),
+          maxTemp: maxTemp,
+          minTemp: minTemp,
+        );
+      }).toList();
+    } catch (error) {
+      //error handling
+      print(error.toString());
+    }
 
     return _weeklyWeatherListData;
   }
 
   Future<List<ForecastHourlyWeather>> loadAndSetHourlyForcastData(
       BuildContext context) async {
-    final response = await get(ApiRefrences.forcastApi(
-      await Provider.of<Location>(context, listen: false).getSelectedCity(),
-    ));
-    final responseDecoded = json.decode(response.body) as Map<String, dynamic>;
-    final responseListData0 =
-        responseDecoded['forecast']['forecastday'][0]['hour'] as List<dynamic>;
-    final responseListData1 =
-        responseDecoded['forecast']['forecastday'][1]['hour'] as List<dynamic>;
-    final responseListData = responseListData0 + responseListData1;
+    try {
+      final response = await get(ApiRefrences.forcastApi(
+        await Provider.of<Location>(context, listen: false).getSelectedCity(),
+      ));
+      final responseDecoded =
+          json.decode(response.body) as Map<String, dynamic>;
+      final responseListData0 = responseDecoded['forecast']['forecastday'][0]
+          ['hour'] as List<dynamic>;
+      final responseListData1 = responseDecoded['forecast']['forecastday'][1]
+          ['hour'] as List<dynamic>;
+      final responseListData = responseListData0 + responseListData1;
 
-    final hourlyWeatherListData48Hours = responseListData.map((e) {
-      int temp = double.parse(e['temp_c'].toString()).round();
-      DateTime time = DateTime.parse(e['time'].toString());
-      String iconImageUrl = e['condition']['icon'];
+      final hourlyWeatherListData48Hours = responseListData.map((e) {
+        int temp = double.parse(e['temp_c'].toString()).round();
+        DateTime time = DateTime.parse(e['time'].toString());
+        String iconImageUrl = e['condition']['icon'];
 
-      return ForecastHourlyWeather(
-        iconImageUrl: iconImageUrl,
-        temp: temp,
-        time: time,
-      );
-    }).toList();
+        return ForecastHourlyWeather(
+          iconImageUrl: iconImageUrl,
+          temp: temp,
+          time: time,
+        );
+      }).toList();
 
-    _hourlyWeatherListData = hourlyWeatherListData48Hours.where((element) {
-      return element.time.isAfter(DateTime.now());
-    }).toList();
+      _hourlyWeatherListData = hourlyWeatherListData48Hours.where((element) {
+        return element.time.isAfter(DateTime.now());
+      }).toList();
+    } catch (error) {
+      //error handling
+      print(error.toString());
+    }
 
     return _hourlyWeatherListData;
   }

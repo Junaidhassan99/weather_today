@@ -30,7 +30,7 @@ class _WeeklyWeatherScreenState extends State<WeeklyWeatherScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:const Text('Weather Today'),
+        title: const Text('Weather Today'),
       ),
       body: RefreshIndicator(
         onRefresh: () async {
@@ -43,65 +43,65 @@ class _WeeklyWeatherScreenState extends State<WeeklyWeatherScreen> {
             future: Provider.of<ForecastWeatherList>(context)
                 .loadAndSetWeeklyForcastData(context),
             builder: (_, snapshot) {
-
-               if (snapshot.connectionState == ConnectionState.done &&
-                  snapshot.data == null) {
+              if (snapshot.connectionState == ConnectionState.done &&
+                  ((snapshot.data as List<ForecastWeeklyWeather>).isEmpty ||
+                      snapshot.data == null)) {
                 return GeneralUtilities.connectionProblemWidget(
                   _bodyHeight(context),
                   () async {
-                    await Provider.of<ForecastWeatherList>(context, listen: false)
-              .refreshForcastWeather(context);
+                    await Provider.of<ForecastWeatherList>(context,
+                            listen: false)
+                        .refreshForcastWeather(context);
                   },
                 );
-              }
-             
-              return !(snapshot.connectionState == ConnectionState.done)
-                  ? Container(
-                      height: _bodyHeight(context),
-                      child:const  Center(
-                        child: CircularProgressIndicator(),
-                      ),
-                    )
-                  : Container(
-                   
-                      padding:const  EdgeInsets.only(
-                        top: WeeklyWeatherScreen.defaultPadding,
-                        left: WeeklyWeatherScreen.defaultPadding,
-                        right: WeeklyWeatherScreen.defaultPadding,
-                      ),
-                      child: Column(
-                        children: [
-                          LocationSelector(
-                            textSize: 22,
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          Container(
-                            alignment: Alignment.topLeft,
-                            child:const  Text(
-                              'Next 3 days',
-                              style: TextStyle(fontSize: 30),
+              } else {
+                return !(snapshot.connectionState == ConnectionState.done)
+                    ? Container(
+                        height: _bodyHeight(context),
+                        child: const Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                      )
+                    : Container(
+                        padding: const EdgeInsets.only(
+                          top: WeeklyWeatherScreen.defaultPadding,
+                          left: WeeklyWeatherScreen.defaultPadding,
+                          right: WeeklyWeatherScreen.defaultPadding,
+                        ),
+                        child: Column(
+                          children: [
+                            LocationSelector(
+                              textSize: 22,
                             ),
-                          ),
-                         const  SizedBox(
-                            height: 20,
-                          ),
-                          //TodayWeatherTile(),
-                         const  SizedBox(
-                            height: 20,
-                          ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Container(
+                              alignment: Alignment.topLeft,
+                              child: const Text(
+                                'Next 3 days',
+                                style: TextStyle(fontSize: 30),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            //TodayWeatherTile(),
+                            const SizedBox(
+                              height: 20,
+                            ),
 
-                          const Divider(
-                            color: ExtraColorsUtility.customThirdColor,
-                          ),
-                          NextFiveDaysWeatherTiles(
-                            listData:
-                                snapshot.data as List<ForecastWeeklyWeather>,
-                          ),
-                        ],
-                      ),
-                    );
+                            const Divider(
+                              color: ExtraColorsUtility.customThirdColor,
+                            ),
+                            NextFiveDaysWeatherTiles(
+                              listData:
+                                  snapshot.data as List<ForecastWeeklyWeather>,
+                            ),
+                          ],
+                        ),
+                      );
+              }
             },
           ),
         ),

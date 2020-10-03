@@ -25,11 +25,16 @@ class Location with ChangeNotifier {
   String _selectedCity;
 
   Future<void> initiateSelectedCity() async {
-    final geoLocationCoordinates = await geoLocation.Location().getLocation();
+    try {
+      final geoLocationCoordinates = await geoLocation.Location().getLocation();
 
-    final responseData = await autoCompleteLocationApiNamesList(
-        '${geoLocationCoordinates.latitude},${geoLocationCoordinates.longitude}');
-    _selectedCity = responseData[0]['name'];
+      final responseData = await autoCompleteLocationApiNamesList(
+          '${geoLocationCoordinates.latitude},${geoLocationCoordinates.longitude}');
+      _selectedCity = responseData[0]['name'];
+    } catch (error) {
+      //error Handling
+      print(error.toString());
+    }
   }
 
   void setSelectedCity(String name) {
@@ -44,9 +49,16 @@ class Location with ChangeNotifier {
   }
 
   Future<List<dynamic>> autoCompleteLocationApiNamesList(String name) async {
-    final response = await get(ApiRefrences.autoCompleteLocationApi(name));
+    var responseData;
 
-    final responseData = json.decode(response.body) as List<dynamic>;
+    try {
+      final response = await get(ApiRefrences.autoCompleteLocationApi(name));
+
+      responseData = json.decode(response.body) as List<dynamic>;
+    } catch (error) {
+      //error Handling
+      print(error.toString());
+    }
 
     return responseData;
   }
