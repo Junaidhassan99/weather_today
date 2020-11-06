@@ -52,6 +52,8 @@ class CurrentCondition with ChangeNotifier {
 
       data = json.decode(response.body);
 
+      print(data.toString());
+
       //Problem was that time must be in hh:mm formate
       //like: '2020-10-01 9:48'
       date = DateTime.parse(

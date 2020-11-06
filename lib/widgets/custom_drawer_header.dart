@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_today/model/current_condition.dart';
-import 'package:weather_today/utilities/general_utilities.dart';
+
 import 'package:weather_today/widgets/location_selector.dart';
 
 class CustomDrawerHeader extends StatelessWidget {
@@ -35,9 +35,9 @@ class CustomDrawerHeader extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        data == null ? '-' : '${data.temp}',
+                        data == null ? 'Loading...' : '${data.temp}',
                         //'-1',
-                        style: const TextStyle(fontSize: 60),
+                        style:data == null ? TextStyle(fontSize: 20):const TextStyle(fontSize: 60),
                       ),
                       Text(
                         data == null ? '' : '°C',
@@ -52,7 +52,7 @@ class CustomDrawerHeader extends StatelessWidget {
                     ? FittedBox(
                         fit: BoxFit.scaleDown,
                         child: const Center(
-                          child: Text('-'),
+                          child: Text(' '),
                           //CircularProgressIndicator(),
                         ),
                       )

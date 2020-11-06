@@ -44,6 +44,7 @@ class ForecastWeatherList with ChangeNotifier {
       );
       final responseDecoded =
           json.decode(response.body) as Map<String, dynamic>;
+           print(responseDecoded.toString());
       final responseListData =
           responseDecoded['forecast']['forecastday'] as List<dynamic>;
 
@@ -75,6 +76,7 @@ class ForecastWeatherList with ChangeNotifier {
       ));
       final responseDecoded =
           json.decode(response.body) as Map<String, dynamic>;
+      print(responseDecoded.toString());
       final responseListData0 = responseDecoded['forecast']['forecastday'][0]
           ['hour'] as List<dynamic>;
       final responseListData1 = responseDecoded['forecast']['forecastday'][1]

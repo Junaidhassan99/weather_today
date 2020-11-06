@@ -11,7 +11,7 @@ class LocationSelector extends StatelessWidget {
 
   Widget get errorTextWidget {
     return Text(
-      '-',
+      'Loading...',
       style: TextStyle(
         fontSize: textSize,
         fontWeight: FontWeight.bold,
