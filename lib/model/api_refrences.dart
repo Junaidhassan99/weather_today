@@ -1,5 +1,5 @@
 class ApiRefrences {
-  static const String apiKey = '407ed8bb79964707a1464358202609';
+  static const String apiKey = 'cdde31ad80044a66b4352147202411';
   static const int numberOfDaysForcast = 3;
   static const String basicApi = 'http://api.weatherapi.com/v1';
 
